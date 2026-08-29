@@ -10,7 +10,7 @@ const celebrateBtn = document.getElementById('celebrateBtn');
 let currentPage = 0;
 const totalPages = pages.length;
 
-// Confetti Effect
+// Confetti Cannon Effect
 function triggerConfetti() {
   if (typeof confetti === 'function') {
     confetti({
@@ -21,8 +21,9 @@ function triggerConfetti() {
   }
 }
 
-// Update Book State
+// Update Book Display & Manage Video Autoplay
 function updateBook() {
+  // 1. Toggle book open/closed state & control bar visibility
   if (currentPage === 0) {
     spiralBook.classList.add('closed');
     spiralBook.classList.remove('open');
@@ -33,26 +34,38 @@ function updateBook() {
     controlsBar.classList.remove('hidden-bar');
   }
 
+  // 2. Flip page and handle video play/pause
   pages.forEach((page, index) => {
+    const video = page.querySelector('video');
+
     if (index === currentPage) {
       page.classList.add('active');
+      if (video) {
+        video.currentTime = 0;
+        video.play().catch(() => {});
+      }
     } else {
       page.classList.remove('active');
+      if (video) {
+        video.pause();
+      }
     }
   });
 
+  // 3. Control button states
   prevBtn.disabled = currentPage === 1;
 
   if (currentPage > 0) {
     pageIndicator.textContent = `Page ${currentPage} of ${totalPages - 1}`;
   }
 
+  // 4. Trigger confetti on final page
   if (currentPage === totalPages - 1) {
     triggerConfetti();
   }
 }
 
-// Actions
+// Event Listeners
 openBookBtn.addEventListener('click', () => {
   currentPage = 1;
   updateBook();
@@ -63,7 +76,7 @@ nextBtn.addEventListener('click', () => {
     currentPage++;
     updateBook();
   } else {
-    currentPage = 0;
+    currentPage = 0; // Return to cover when clicking past the last page
     updateBook();
   }
 });

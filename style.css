@@ -20,7 +20,7 @@ body {
   position: relative;
 }
 
-/* Background Balloons & Cheering Crowd */
+/* Background Balloons */
 .party-bg {
   position: absolute;
   inset: 0;
@@ -47,53 +47,20 @@ body {
   100% { transform: translateY(-110vh) rotate(20deg); opacity: 0; }
 }
 
-/* Cheering Crowd Styling */
+/* Screen Corner Crowds */
 .crowd {
-  position: absolute;
-  bottom: 10px;
+  position: fixed;
+  bottom: 0;
   display: flex;
-  gap: 15px;
-  z-index: 1;
+  gap: 10px;
+  z-index: 2;
+  pointer-events: none;
 }
 
-.left-crowd { left: 20px; }
-.right-crowd { right: 20px; }
+.left-crowd { left: 10px; }
+.right-crowd { right: 10px; }
 
-.person {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 2.2rem;
-  position: relative;
-  user-select: none;
-}
-
-.person .hat { font-size: 1.4rem; margin-bottom: -10px; }
-.person .head { font-size: 2.4rem; }
-.person .body { font-size: 2rem; margin-top: -8px; }
-.person .arm { position: absolute; font-size: 1.6rem; top: 15px; }
-
-.arm-left { left: -15px; animation: waveLeft 0.8s ease-in-out infinite alternate; }
-.arm-right { right: -15px; animation: waveRight 0.8s ease-in-out infinite alternate; }
-
-.cheer-1 { animation: jump 0.7s ease-in-out infinite alternate; }
-.cheer-2 { animation: sway 0.9s ease-in-out infinite alternate; animation-delay: 0.2s; }
-.cheer-3 { animation: jump 0.6s ease-in-out infinite alternate; animation-delay: 0.4s; }
-
-@keyframes jump {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-30px); }
-}
-
-@keyframes sway {
-  0% { transform: rotate(-8deg) translateY(0); }
-  100% { transform: rotate(8deg) translateY(-20px); }
-}
-
-@keyframes waveLeft { 0% { transform: rotate(-20deg); } 100% { transform: rotate(20deg); } }
-@keyframes waveRight { 0% { transform: rotate(20deg); } 100% { transform: rotate(-20deg); } }
-
-/* Main Container */
+/* Book Container Stage */
 .book-container {
   position: relative;
   z-index: 10;
@@ -112,7 +79,50 @@ body {
   justify-content: center;
   align-items: center;
   height: 500px;
+  position: relative;
+  width: 100%;
 }
+
+/* Book Corner Crowds */
+.book-crowd {
+  position: absolute;
+  bottom: -25px;
+  display: flex;
+  gap: 8px;
+  z-index: 25;
+  pointer-events: none;
+  transition: all 0.8s ease;
+}
+
+.book-left-crowd { left: 5%; }
+.book-right-crowd { right: 5%; }
+
+/* Cheering Character Animations */
+.person {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 2rem;
+  position: relative;
+  user-select: none;
+}
+
+.person .hat { font-size: 1.2rem; margin-bottom: -10px; }
+.person .head { font-size: 2rem; }
+.person .body { font-size: 1.7rem; margin-top: -8px; }
+.person .arm { position: absolute; font-size: 1.4rem; top: 12px; }
+
+.arm-left { left: -12px; animation: waveLeft 0.8s ease-in-out infinite alternate; }
+.arm-right { right: -12px; animation: waveRight 0.8s ease-in-out infinite alternate; }
+
+.cheer-1 { animation: jump 0.7s ease-in-out infinite alternate; }
+.cheer-2 { animation: sway 0.9s ease-in-out infinite alternate; animation-delay: 0.2s; }
+.cheer-3 { animation: jump 0.6s ease-in-out infinite alternate; animation-delay: 0.4s; }
+
+@keyframes jump { 0% { transform: translateY(0); } 100% { transform: translateY(-20px); } }
+@keyframes sway { 0% { transform: rotate(-8deg) translateY(0); } 100% { transform: rotate(8deg) translateY(-15px); } }
+@keyframes waveLeft { 0% { transform: rotate(-20deg); } 100% { transform: rotate(20deg); } }
+@keyframes waveRight { 0% { transform: rotate(20deg); } 100% { transform: rotate(-20deg); } }
 
 /* 3D Spiral Book */
 .spiral-book {
@@ -159,7 +169,7 @@ body {
   box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.5);
 }
 
-/* Pages Styling */
+/* Pages Base Styling */
 .page {
   position: absolute;
   inset: 0;
@@ -260,9 +270,10 @@ body {
   overflow: hidden;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   border: 6px solid #fff;
+  background: #000;
 }
 
-.photo-frame img {
+.photo-frame video {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -305,7 +316,7 @@ body {
   font-size: 1.5rem;
 }
 
-/* Navigation Bar */
+/* Navigation Bar Styling */
 .controls {
   display: flex;
   align-items: center;
@@ -358,53 +369,30 @@ body {
   50% { transform: scale(1.04); }
 }
 
-/* Mobile Adjustments */
+/* Mobile Responsiveness */
 @media (max-width: 768px) {
-  .book-perspective { 
-    height: 520px; 
-  }
+  .book-perspective { height: 520px; }
+  .spiral-book.closed { width: 85vw; }
+  .spiral-book.open { width: 92vw; height: 500px; }
+  
+  .spread-page { flex-direction: column; }
+  .left-side, .right-side { width: 100%; height: 50%; padding: 12px; }
+  .left-side { border-right: none; border-bottom: 2px dashed #dcdde1; }
+  .spiral-spine { display: none; }
 
-  .spiral-book.closed { 
-    width: 85vw; 
-  }
-
-  .spiral-book.open { 
-    width: 92vw; 
-    height: 500px; 
-  }
-
-  .spread-page { 
-    flex-direction: column; 
-  }
-
-  .left-side, .right-side { 
-    width: 100%; 
-    height: 50%; 
-    padding: 12px; 
-  }
-
-  .left-side { 
-    border-right: none; 
-    border-bottom: 2px dashed #dcdde1; 
-  }
-
-  .spiral-spine { 
-    display: none; 
-  }
-
-  /* Make Cheering Crowd Visible & Scaled for Mobile */
   .crowd {
-    display: flex;
-    bottom: 5px;
-    transform: scale(0.65); /* Scale down characters to fit small screens */
+    display: flex !important;
+    bottom: 2px;
+    transform: scale(0.6);
     transform-origin: bottom;
   }
+  .left-crowd { left: -20px; }
+  .right-crowd { right: -20px; }
 
-  .left-crowd { 
-    left: -15px; 
+  .book-crowd {
+    transform: scale(0.65);
+    bottom: -35px;
   }
-
-  .right-crowd { 
-    right: -15px; 
-  }
+  .book-left-crowd { left: 0px; }
+  .book-right-crowd { right: 0px; }
 }
