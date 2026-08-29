@@ -360,12 +360,51 @@ body {
 
 /* Mobile Adjustments */
 @media (max-width: 768px) {
-  .book-perspective { height: 560px; }
-  .spiral-book.closed { width: 85vw; }
-  .spiral-book.open { width: 92vw; height: 540px; }
-  .spread-page { flex-direction: column; }
-  .left-side, .right-side { width: 100%; height: 50%; padding: 15px; }
-  .left-side { border-right: none; border-bottom: 2px dashed #dcdde1; }
-  .spiral-spine { display: none; }
-  .crowd { display: none; } /* Hide crowds on very small phones so it stays clean */
+  .book-perspective { 
+    height: 520px; 
+  }
+
+  .spiral-book.closed { 
+    width: 85vw; 
+  }
+
+  .spiral-book.open { 
+    width: 92vw; 
+    height: 500px; 
+  }
+
+  .spread-page { 
+    flex-direction: column; 
+  }
+
+  .left-side, .right-side { 
+    width: 100%; 
+    height: 50%; 
+    padding: 12px; 
+  }
+
+  .left-side { 
+    border-right: none; 
+    border-bottom: 2px dashed #dcdde1; 
+  }
+
+  .spiral-spine { 
+    display: none; 
+  }
+
+  /* Make Cheering Crowd Visible & Scaled for Mobile */
+  .crowd {
+    display: flex;
+    bottom: 5px;
+    transform: scale(0.65); /* Scale down characters to fit small screens */
+    transform-origin: bottom;
+  }
+
+  .left-crowd { 
+    left: -15px; 
+  }
+
+  .right-crowd { 
+    right: -15px; 
+  }
 }
