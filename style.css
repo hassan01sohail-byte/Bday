@@ -1,0 +1,371 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at center, #2e124d, #0d011c);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #2f3542;
+  position: relative;
+}
+
+/* Background Balloons & Cheering Crowd */
+.party-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.balloon {
+  position: absolute;
+  font-size: 2.8rem;
+  bottom: -100px;
+  animation: floatUp 8s linear infinite;
+  opacity: 0.7;
+}
+
+.b1 { left: 5%; animation-duration: 9s; }
+.b2 { left: 20%; animation-duration: 7s; animation-delay: 2s; }
+.b3 { left: 50%; animation-duration: 10s; animation-delay: 1s; }
+.b4 { left: 80%; animation-duration: 8s; animation-delay: 3s; }
+.b5 { left: 92%; animation-duration: 6.5s; }
+
+@keyframes floatUp {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0.7; }
+  100% { transform: translateY(-110vh) rotate(20deg); opacity: 0; }
+}
+
+/* Cheering Crowd Styling */
+.crowd {
+  position: absolute;
+  bottom: 10px;
+  display: flex;
+  gap: 15px;
+  z-index: 1;
+}
+
+.left-crowd { left: 20px; }
+.right-crowd { right: 20px; }
+
+.person {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 2.2rem;
+  position: relative;
+  user-select: none;
+}
+
+.person .hat { font-size: 1.4rem; margin-bottom: -10px; }
+.person .head { font-size: 2.4rem; }
+.person .body { font-size: 2rem; margin-top: -8px; }
+.person .arm { position: absolute; font-size: 1.6rem; top: 15px; }
+
+.arm-left { left: -15px; animation: waveLeft 0.8s ease-in-out infinite alternate; }
+.arm-right { right: -15px; animation: waveRight 0.8s ease-in-out infinite alternate; }
+
+.cheer-1 { animation: jump 0.7s ease-in-out infinite alternate; }
+.cheer-2 { animation: sway 0.9s ease-in-out infinite alternate; animation-delay: 0.2s; }
+.cheer-3 { animation: jump 0.6s ease-in-out infinite alternate; animation-delay: 0.4s; }
+
+@keyframes jump {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-30px); }
+}
+
+@keyframes sway {
+  0% { transform: rotate(-8deg) translateY(0); }
+  100% { transform: rotate(8deg) translateY(-20px); }
+}
+
+@keyframes waveLeft { 0% { transform: rotate(-20deg); } 100% { transform: rotate(20deg); } }
+@keyframes waveRight { 0% { transform: rotate(20deg); } 100% { transform: rotate(-20deg); } }
+
+/* Main Container */
+.book-container {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  padding: 20px;
+}
+
+.book-perspective {
+  perspective: 1600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+}
+
+/* 3D Spiral Book */
+.spiral-book {
+  position: relative;
+  height: 480px;
+  transform-style: preserve-3d;
+  transition: width 0.8s cubic-bezier(0.4, 0.2, 0.2, 1.1),
+              transform 0.8s cubic-bezier(0.4, 0.2, 0.2, 1.1);
+}
+
+.spiral-book.closed {
+  width: 380px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+}
+
+.spiral-book.open {
+  width: 740px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+}
+
+/* Metallic Spiral Spine */
+.spiral-spine {
+  position: absolute;
+  top: 15px;
+  bottom: 15px;
+  width: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 30;
+  pointer-events: none;
+  transition: left 0.8s ease;
+}
+
+.spiral-book.closed .spiral-spine { left: -12px; }
+.spiral-book.open .spiral-spine { left: 50%; transform: translateX(-50%); }
+
+.ring {
+  width: 32px;
+  height: 12px;
+  background: linear-gradient(180deg, #eaedd0, #718093, #dcdde1);
+  border-radius: 6px;
+  box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.5);
+}
+
+/* Pages Styling */
+.page {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  transform-origin: left center;
+  opacity: 0;
+  visibility: hidden;
+  transform: rotateY(-90deg);
+  transition: transform 0.7s cubic-bezier(0.645, 0.045, 0.355, 1),
+              opacity 0.5s ease,
+              visibility 0.7s ease;
+}
+
+.page.active {
+  opacity: 1;
+  visibility: visible;
+  transform: rotateY(0deg);
+}
+
+/* Cover Page */
+.cover-page {
+  background: linear-gradient(135deg, #ff4757, #ff6b81);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 35px;
+  border: 5px solid #ffd32a;
+}
+
+.cover-badge {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 6px 16px;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-bottom: 25px;
+}
+
+.cover-title {
+  font-size: 2.3rem;
+  margin-bottom: 12px;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.cover-subtitle {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  margin-bottom: 35px;
+}
+
+.open-book-btn {
+  background: #ffd32a;
+  color: #2f3542;
+  border: none;
+  padding: 12px 28px;
+  font-size: 1.05rem;
+  font-weight: bold;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s, background 0.2s;
+  animation: pulse 1.5s infinite;
+}
+
+.open-book-btn:hover {
+  background: #ffda47;
+  transform: scale(1.05);
+}
+
+/* Open Spread Layout */
+.spread-page {
+  display: flex;
+}
+
+.left-side {
+  width: 50%;
+  height: 100%;
+  background: #f8f9fa;
+  border-right: 2px dashed #dcdde1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 20px 30px 40px;
+}
+
+.photo-frame {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  border: 6px solid #fff;
+}
+
+.photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.right-side {
+  width: 50%;
+  height: 100%;
+  background: #ffffff;
+  padding: 40px 30px 40px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.page-number {
+  position: absolute;
+  bottom: 15px;
+  right: 20px;
+  font-size: 0.85rem;
+  color: #a4b0be;
+  font-weight: bold;
+}
+
+.right-side h2 {
+  font-size: 1.7rem;
+  color: #ff4757;
+  margin-bottom: 15px;
+}
+
+.right-side .message {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #57606f;
+  margin-bottom: 20px;
+}
+
+.page-decor {
+  font-size: 1.5rem;
+}
+
+/* Navigation Bar */
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  padding: 10px 25px;
+  border-radius: 30px;
+  color: #fff;
+  margin-top: 20px;
+  height: 50px;
+  transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s ease;
+}
+
+.controls.hidden-bar {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  pointer-events: none;
+}
+
+.controls button, .confetti-btn {
+  background: #ff4757;
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  font-size: 0.95rem;
+  font-weight: bold;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s, opacity 0.3s;
+}
+
+.controls button:hover:not(:disabled), .confetti-btn:hover {
+  background: #ff6b81;
+  transform: translateY(-2px);
+}
+
+.controls button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.confetti-btn {
+  align-self: flex-start;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  .book-perspective { height: 560px; }
+  .spiral-book.closed { width: 85vw; }
+  .spiral-book.open { width: 92vw; height: 540px; }
+  .spread-page { flex-direction: column; }
+  .left-side, .right-side { width: 100%; height: 50%; padding: 15px; }
+  .left-side { border-right: none; border-bottom: 2px dashed #dcdde1; }
+  .spiral-spine { display: none; }
+  .crowd { display: none; } /* Hide crowds on very small phones so it stays clean */
+}
