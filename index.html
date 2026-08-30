@@ -5,72 +5,79 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Happy Birthday Memory Book 📖</title>
   <link rel="stylesheet" href="style.css" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
   <!-- Offline Confetti Script -->
   <script src="confetti.browser.min.js"></script>
 </head>
 <body>
 
-  <!-- Screen Background Layer (Balloons & Bottom Screen Corner Crowds) -->
-  <div class="party-bg">
-    <!-- Floating Balloons -->
-    <div class="balloon b1">🎈</div>
-    <div class="balloon b2">🎈</div>
-    <div class="balloon b3">🎈</div>
-    <div class="balloon b4">🎈</div>
-    <div class="balloon b5">🎈</div>
-
-    <!-- Cheering Friends (Screen Bottom Left) -->
-    <div class="crowd left-crowd">
-      <div class="person cheer-1">
-        <div class="hat">🎉</div>
-        <div class="head">😄</div>
-        <div class="body">👕</div>
-        <div class="arm arm-left">🙌</div>
-      </div>
-      <div class="person cheer-2">
-        <div class="hat">🥳</div>
-        <div class="head">😃</div>
-        <div class="body">👗</div>
-        <div class="arm arm-right">🥂</div>
-      </div>
-      <div class="person cheer-3">
-        <div class="hat">🎊</div>
-        <div class="head">😆</div>
-        <div class="body">🎽</div>
-        <div class="arm arm-left">👋</div>
-      </div>
+  <!-- INTRO ANIMATION CONTAINER -->
+  <div id="intro-overlay" class="intro-overlay">
+    
+    <!-- STAGE 1: 3-Step Growing Heart -->
+    <div class="intro-stage stage-bow" id="stage-bow">
+      <div class="subtitle-text">a little something, for you</div>
+      <div class="pulsing-heart" id="growingHeart">❤️</div>
     </div>
 
-    <!-- Cheering Friends (Screen Bottom Right) -->
-    <div class="crowd right-crowd">
-      <div class="person cheer-2">
-        <div class="hat">🎉</div>
-        <div class="head">🤩</div>
-        <div class="body">👚</div>
-        <div class="arm arm-right">🙌</div>
+    <!-- STAGE 2: Dramatic Text Reveal -->
+    <div class="intro-stage stage-dramatic hidden" id="stage-dramatic">
+      <div class="letterbox-bar bar-top"></div>
+      <div class="dramatic-content">
+        <p class="sub-wish">make a wish...</p>
+        <h1 class="dramatic-title">Happy Birthday</h1>
+        <p class="sub-footer">to someone worth celebrating</p>
       </div>
-      <div class="person cheer-1">
-        <div class="hat">🥳</div>
-        <div class="head">😎</div>
-        <div class="body">👔</div>
-        <div class="arm arm-left">🍹</div>
-      </div>
-      <div class="person cheer-3">
-        <div class="hat">🎊</div>
-        <div class="head">😁</div>
-        <div class="body">👗</div>
-        <div class="arm arm-right">✨</div>
-      </div>
+      <div class="letterbox-bar bar-bot"></div>
     </div>
+
+    <!-- STAGE 3: Animated Rising Tree with Blooming Hearts & Flowers -->
+    <div class="intro-stage stage-tree hidden" id="stage-tree">
+      <div class="tree-text-overlay">
+        <p class="tree-sub">and... make it count</p>
+        <h2 class="tree-title">Happy Birthday</h2>
+        <p class="tree-footer">here's to a year that blooms</p>
+      </div>
+      
+      <div class="tree-canvas-container">
+        <svg class="tree-svg" viewBox="0 0 400 500">
+          <defs>
+            <linearGradient id="trunkGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+              <stop offset="0%" stop-color="#3d1e1a" />
+              <stop offset="100%" stop-color="#6e3b35" />
+            </linearGradient>
+          </defs>
+          <path class="tree-path trunk" d="M 200 500 C 200 420 195 350 200 240" stroke="url(#trunkGrad)" stroke-width="16" fill="none" stroke-linecap="round"/>
+          <path class="tree-path branch branch-l1" d="M 200 320 C 150 260 110 200 130 110" stroke="url(#trunkGrad)" stroke-width="10" fill="none" stroke-linecap="round"/>
+          <path class="tree-path branch branch-l2" d="M 160 220 C 120 180 90 140 100 80" stroke="url(#trunkGrad)" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <path class="tree-path branch branch-r1" d="M 200 320 C 250 260 290 200 270 110" stroke="url(#trunkGrad)" stroke-width="10" fill="none" stroke-linecap="round"/>
+          <path class="tree-path branch branch-r2" d="M 240 220 C 280 180 310 140 300 80" stroke="url(#trunkGrad)" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <path class="tree-path branch branch-c1" d="M 200 240 C 180 180 170 120 185 70" stroke="url(#trunkGrad)" stroke-width="7" fill="none" stroke-linecap="round"/>
+          <path class="tree-path branch branch-c2" d="M 200 240 C 220 180 230 120 215 70" stroke="url(#trunkGrad)" stroke-width="7" fill="none" stroke-linecap="round"/>
+        </svg>
+
+        <div class="blooming-canopy" id="treeCanopy"></div>
+      </div>
+
+      <button class="proceed-book-btn hidden" id="proceedBookBtn">Open Memory Book 📖</button>
+    </div>
+
   </div>
 
-  <div class="book-container">
-    
-    <!-- 3D Perspective Wrapper -->
-    <div class="book-perspective">
-      
-      <!-- Cheering Characters Anchored to Left Book Corner -->
-      <div class="book-crowd book-left-crowd">
+  <!-- MAIN MEMORY BOOK APP CONTAINER -->
+  <div class="main-app-container hidden" id="mainApp">
+    <!-- Background Layer (Balloons & Cheering Characters) -->
+    <div class="party-bg">
+      <div class="balloon b1">🎈</div>
+      <div class="balloon b2">🎈</div>
+      <div class="balloon b3">🎈</div>
+      <div class="balloon b4">🎈</div>
+      <div class="balloon b5">🎈</div>
+
+      <div class="crowd left-crowd">
         <div class="person cheer-1">
           <div class="hat">🎉</div>
           <div class="head">😄</div>
@@ -83,101 +90,15 @@
           <div class="body">👗</div>
           <div class="arm arm-right">🥂</div>
         </div>
+        <div class="person cheer-3">
+          <div class="hat">🎊</div>
+          <div class="head">😆</div>
+          <div class="body">🎽</div>
+          <div class="arm arm-left">👋</div>
+        </div>
       </div>
 
-      <!-- The Spiral Book -->
-      <div class="spiral-book closed" id="spiralBook">
-        
-        <!-- Metallic Spiral Spine -->
-        <div class="spiral-spine">
-          <div class="ring"></div>
-          <div class="ring"></div>
-          <div class="ring"></div>
-          <div class="ring"></div>
-          <div class="ring"></div>
-          <div class="ring"></div>
-          <div class="ring"></div>
-          <div class="ring"></div>
-          <div class="ring"></div>
-          <div class="ring"></div>
-        </div>
-
-        <!-- COVER PAGE (Page 0) -->
-        <div class="page cover-page active" id="page-0">
-          <div class="cover-content">
-            <div class="cover-badge">🎁 SPECIAL EDITION</div>
-            <h1 class="cover-title">🎉 Happy Birthday! 🎉</h1>
-            <p class="cover-subtitle">A Book of Live Memories</p>
-            <button class="open-book-btn" id="openBookBtn">Open Book 📖</button>
-          </div>
-        </div>
-
-        <!-- SPREAD 1 (Page 1): Video Left, Text Right -->
-        <div class="page spread-page" id="page-1">
-          <div class="left-side">
-            <div class="photo-frame">
-              <video autoplay loop muted playsinline>
-                <source src="video1.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            </div>
-          </div>
-          <div class="right-side">
-            <div class="page-number">1</div>
-            <h2>The Journey Begins 🚀</h2>
-            <p class="message">
-              Wishing you the happiest of birthdays! Looking back through all our memories, 
-              every moment is full of laughs, fun, and great stories.
-            </p>
-            <div class="page-decor">✨ 🌟 ✨</div>
-          </div>
-        </div>
-
-        <!-- SPREAD 2 (Page 2): Video Left, Text Right -->
-        <div class="page spread-page" id="page-2">
-          <div class="left-side">
-            <div class="photo-frame">
-              <video autoplay loop muted playsinline>
-                <source src="video2.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            </div>
-          </div>
-          <div class="right-side">
-            <div class="page-number">2</div>
-            <h2>Unforgettable Moments 🥳</h2>
-            <p class="message">
-              Thank you for being such an awesome friend. Here’s to crushing more goals, 
-              taking on new adventures, and making this year your best one yet!
-            </p>
-            <div class="page-decor">🥂 🎊 🎉</div>
-          </div>
-        </div>
-
-        <!-- SPREAD 3 / FINAL PAGE (Page 3): Video Left, Celebration Right -->
-        <div class="page spread-page" id="page-3">
-          <div class="left-side">
-            <div class="photo-frame">
-              <video autoplay loop muted playsinline>
-                <source src="video3.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            </div>
-          </div>
-          <div class="right-side final-spread">
-            <div class="page-number">3</div>
-            <h2>Cheers to You! 🎂</h2>
-            <p class="message">
-              May your year ahead be packed with success, good health, and endless happiness!
-            </p>
-            <button class="confetti-btn" id="celebrateBtn">Pop Confetti! 🎊</button>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Cheering Characters Anchored to Right Book Corner -->
-      <div class="book-crowd book-right-crowd">
+      <div class="crowd right-crowd">
         <div class="person cheer-2">
           <div class="hat">🎉</div>
           <div class="head">🤩</div>
@@ -190,17 +111,123 @@
           <div class="body">👔</div>
           <div class="arm arm-left">🍹</div>
         </div>
+        <div class="person cheer-3">
+          <div class="hat">🎊</div>
+          <div class="head">😁</div>
+          <div class="body">👗</div>
+          <div class="arm arm-right">✨</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="book-container">
+      
+      <!-- 3D Perspective Wrapper -->
+      <div class="book-perspective">
+        <div class="spiral-book closed" id="spiralBook">
+          
+          <!-- Metallic Spiral Spine -->
+          <div class="spiral-spine">
+            <div class="ring"></div>
+            <div class="ring"></div>
+            <div class="ring"></div>
+            <div class="ring"></div>
+            <div class="ring"></div>
+            <div class="ring"></div>
+            <div class="ring"></div>
+            <div class="ring"></div>
+            <div class="ring"></div>
+            <div class="ring"></div>
+          </div>
+
+          <!-- COVER PAGE (Page 0) -->
+          <div class="page cover-page active" id="page-0">
+            <div class="cover-content">
+              <div class="cover-badge">🎁 SPECIAL EDITION</div>
+              <h1 class="cover-title">🎉 Happy Birthday! 🎉</h1>
+              <p class="cover-subtitle">A Book of Favorite Memories</p>
+              <button class="open-book-btn" id="openBookBtn">Open Book 📖</button>
+            </div>
+          </div>
+
+          <!-- SPREAD 1 (Page 1) -->
+          <div class="page spread-page" id="page-1">
+            <div class="left-side">
+              <div class="photo-frame">
+                <img src="https://picsum.photos/400/500?random=1" alt="Memory 1" />
+              </div>
+            </div>
+            <div class="right-side">
+              <div class="page-number">1</div>
+              <h2>The Journey Begins 🚀</h2>
+              <p class="message">
+                Wishing you the happiest of birthdays! Looking back through all our memories, 
+                every moment is full of laughs, fun, and great stories.
+              </p>
+              <div class="page-decor">✨ 🌟 ✨</div>
+            </div>
+          </div>
+
+          <!-- SPREAD 2 (Page 2) -->
+          <div class="page spread-page" id="page-2">
+            <div class="left-side">
+              <div class="photo-frame">
+                <img src="https://picsum.photos/400/500?random=2" alt="Memory 2" />
+              </div>
+            </div>
+            <div class="right-side">
+              <div class="page-number">2</div>
+              <h2>Unforgettable Moments 🥳</h2>
+              <p class="message">
+                Thank you for being such an awesome friend. Here’s to crushing more goals, 
+                taking on new adventures, and making this year your best one yet!
+              </p>
+              <div class="page-decor">🥂 🎊 🎉</div>
+            </div>
+          </div>
+
+          <!-- SPREAD 3 / FINAL PAGE (Page 3) -->
+          <div class="page spread-page" id="page-3">
+            <div class="left-side">
+              <div class="photo-frame">
+                <img src="https://picsum.photos/400/500?random=3" alt="Memory 3" />
+              </div>
+            </div>
+            <div class="right-side final-spread">
+              <div class="page-number">3</div>
+              <h2>Cheers to You! 🎂</h2>
+              <p class="message">
+                May your year ahead be packed with success, good health, and endless happiness!
+              </p>
+              <button class="confetti-btn" id="celebrateBtn">Pop Confetti! 🎊</button>
+
+              <!-- END OF BOOK QUESTION SECTION -->
+              <div class="quiz-container" id="quizContainer">
+                <h3 class="quiz-question">Question: Random 🤔</h3>
+                <div class="quiz-options">
+                  <button class="quiz-opt" data-option="1">1: opt1</button>
+                  <button class="quiz-opt" data-option="2">2: opt2</button>
+                  <button class="quiz-opt" data-option="3">3: opt3</button>
+                  <button class="quiz-opt" data-option="4">4: opt4</button>
+                  <button class="quiz-opt" data-option="5">5: opt5</button>
+                </div>
+                <div class="quiz-result" id="quizResult"></div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Navigation Bar -->
+      <div class="controls hidden-bar" id="controlsBar">
+        <button id="prevBtn">❮ Previous</button>
+        <span id="pageIndicator">Page 1 of 3</span>
+        <button id="nextBtn">Next ❯</button>
       </div>
 
     </div>
-
-    <!-- Navigation Bar -->
-    <div class="controls hidden-bar" id="controlsBar">
-      <button id="prevBtn">❮ Previous</button>
-      <span id="pageIndicator">Page 1 of 3</span>
-      <button id="nextBtn">Next ❯</button>
-    </div>
-
   </div>
 
   <script src="script.js"></script>
