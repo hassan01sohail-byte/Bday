@@ -242,7 +242,7 @@ body {
   display: flex;
 }
 
-/* PHOTO FRAME & IMAGE SCALING FIX */
+/* Photo Frame & Scaled Visual View */
 .left-side {
   width: 50%;
   height: 100%;
@@ -251,7 +251,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 18px;
+  padding: 15px;
 }
 
 .photo-frame {
@@ -262,7 +262,7 @@ body {
   overflow: hidden;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
   border: 5px solid #fff;
-  background: #f1f2f6;
+  background: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -424,7 +424,7 @@ body {
   50% { transform: scale(1.04); }
 }
 
-/* Mobile Adjustments for Book */
+/* Mobile Adjustments */
 @media (max-width: 768px) {
   .book-perspective { height: 530px; }
   .spiral-book.closed { width: 88vw; }
@@ -432,8 +432,8 @@ body {
   .spread-page { flex-direction: column; }
   .left-side {
     width: 100%;
-    height: 40%;
-    padding: 10px;
+    height: 42%;
+    padding: 8px;
     border-right: none;
     border-bottom: 2px dashed #dcdde1;
   }
@@ -444,7 +444,7 @@ body {
   .photo-frame img {
     object-fit: contain; /* Full unclipped image frame on mobile */
   }
-  .right-side { width: 100%; height: 60%; padding: 14px; }
+  .right-side { width: 100%; height: 58%; padding: 14px; }
   .spiral-spine { display: none; }
   .crowd { display: none; }
 }
@@ -563,14 +563,14 @@ body {
   100% { opacity: 1; transform: scale(1) translateY(0); }
 }
 
-/* STAGE 3: REDESIGNED ORGANIC HEART TREE & BLOOMING */
+/* STAGE 3: ORGANIC HEART TREE & BLOOMING */
 .stage-tree {
   background: radial-gradient(circle at center, #fff6f8 0%, #fcdbe4 100%);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 15px 25px 15px;
+  padding: 20px 15px;
   height: 100vh;
   width: 100vw;
   box-sizing: border-box;
@@ -610,7 +610,7 @@ body {
 .tree-canvas-container {
   position: relative;
   width: min(380px, 90vw);
-  height: min(420px, 52vh);
+  height: min(450px, 60vh);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -661,36 +661,6 @@ body {
 @keyframes bloomPop {
   0% { transform: scale(0) rotate(-20deg); opacity: 0; }
   100% { transform: scale(1) rotate(0deg); opacity: 1; }
-}
-
-.btn-holder {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 100;
-  margin-top: 10px;
-  min-height: 55px;
-}
-
-.proceed-book-btn {
-  background: #d63031;
-  color: white;
-  border: none;
-  padding: 14px 36px;
-  font-size: 1.05rem;
-  font-weight: bold;
-  border-radius: 30px;
-  cursor: pointer;
-  box-shadow: 0 8px 25px rgba(214, 48, 49, 0.45);
-  white-space: nowrap;
-  transition: transform 0.2s, background 0.2s;
-  animation: pulse 1.5s infinite;
-}
-
-.proceed-book-btn:hover {
-  background: #ff7675;
-  transform: scale(1.05);
 }
 
 .main-app-container {

@@ -5,7 +5,6 @@ const stageDramatic = document.getElementById('stage-dramatic');
 const stageTree = document.getElementById('stage-tree');
 const growingHeart = document.getElementById('growingHeart');
 const treeCanopy = document.getElementById('treeCanopy');
-const proceedBookBtn = document.getElementById('proceedBookBtn');
 const mainApp = document.getElementById('mainApp');
 
 // Memory Book DOM Elements
@@ -73,14 +72,11 @@ function bloomCanopyFull() {
       item.innerHTML = bloomItems[Math.floor(Math.random() * bloomItems.length)];
       
       const t = Math.random() * Math.PI * 2;
-      // Weighted distribution to create lush outer foliage and dense crown
       const r = Math.pow(Math.random(), 0.5) * 115;
 
-      // Parametric heart formulation matching natural tree arch
       const hx = 16 * Math.pow(Math.sin(t), 3);
       const hy = -(13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t));
 
-      // Percentages relative to treeCanopy
       const leftPercent = 50 + ((hx / 16) * (r / 2.3));
       const topPercent = 30 + ((hy / 16) * (r / 2.3));
       
@@ -95,19 +91,15 @@ function bloomCanopyFull() {
     }, i * 25);
   }
 
-  // Reveal proceed button reliably in view
+  // Auto transition to memory book after blooming completes + 2 second delay
   setTimeout(() => {
-    proceedBookBtn.classList.remove('hidden');
-  }, totalBlooms * 25 + 350);
+    introOverlay.style.opacity = '0';
+    setTimeout(() => {
+      introOverlay.classList.add('hidden');
+      mainApp.classList.remove('hidden');
+    }, 1000);
+  }, (totalBlooms * 25) + 2000);
 }
-
-proceedBookBtn.addEventListener('click', () => {
-  introOverlay.style.opacity = '0';
-  setTimeout(() => {
-    introOverlay.classList.add('hidden');
-    mainApp.classList.remove('hidden');
-  }, 1000);
-});
 
 // QUIZ EVENT LISTENERS
 quizOptions.forEach(button => {
