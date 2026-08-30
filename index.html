@@ -37,26 +37,31 @@
       </div>
       
       <div class="tree-canvas-container">
-        <svg class="tree-svg" viewBox="0 0 400 500">
+        <svg class="tree-svg" viewBox="0 0 500 600">
           <defs>
-            <linearGradient id="trunkGrad" x1="0%" y1="100%" x2="0%" y2="0%">
-              <stop offset="0%" stop-color="#3d1e1a" />
-              <stop offset="100%" stop-color="#5a2d27" />
+            <linearGradient id="trunkGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+              <stop offset="0%" stop-color="#2d130f" />
+              <stop offset="60%" stop-color="#4a221b" />
+              <stop offset="100%" stop-color="#6e352b" />
             </linearGradient>
           </defs>
-          <path class="tree-path trunk" d="M 200 500 Q 198 380 200 270" stroke="url(#trunkGrad)" stroke-width="14" fill="none" stroke-linecap="round"/>
+
+          <path class="tree-path trunk-main" d="M 250 600 C 250 500 240 430 250 330" stroke="url(#trunkGradient)" stroke-width="20" fill="none" stroke-linecap="round"/>
+          <path class="tree-path trunk-base-l" d="M 250 560 Q 210 590 180 600" stroke="url(#trunkGradient)" stroke-width="10" fill="none" stroke-linecap="round"/>
+          <path class="tree-path trunk-base-r" d="M 250 560 Q 290 590 320 600" stroke="url(#trunkGradient)" stroke-width="10" fill="none" stroke-linecap="round"/>
+
+          <path class="tree-path branch-outer-l" d="M 250 340 C 160 300 70 200 110 100 C 140 35 230 45 245 140" stroke="url(#trunkGradient)" stroke-width="11" fill="none" stroke-linecap="round"/>
+          <path class="tree-path branch-outer-r" d="M 250 340 C 340 300 430 200 390 100 C 360 35 270 45 255 140" stroke="url(#trunkGradient)" stroke-width="11" fill="none" stroke-linecap="round"/>
+
+          <path class="tree-path branch-mid-l" d="M 250 310 C 190 260 140 180 180 110 C 205 75 240 100 245 130" stroke="url(#trunkGradient)" stroke-width="8" fill="none" stroke-linecap="round"/>
+          <path class="tree-path branch-mid-r" d="M 250 310 C 310 260 360 180 320 110 C 295 75 260 100 255 130" stroke="url(#trunkGradient)" stroke-width="8" fill="none" stroke-linecap="round"/>
           
-          <path class="tree-path branch-l1" d="M 200 270 C 130 240 70 160 100 80 C 120 40 180 50 195 100" stroke="url(#trunkGrad)" stroke-width="8" fill="none" stroke-linecap="round"/>
-          <path class="tree-path branch-r1" d="M 200 270 C 270 240 330 160 300 80 C 280 40 220 50 205 100" stroke="url(#trunkGrad)" stroke-width="8" fill="none" stroke-linecap="round"/>
-          
-          <path class="tree-path branch-c1" d="M 200 270 Q 185 190 150 120" stroke="url(#trunkGrad)" stroke-width="6" fill="none" stroke-linecap="round"/>
-          <path class="tree-path branch-c2" d="M 200 270 Q 215 190 250 120" stroke="url(#trunkGrad)" stroke-width="6" fill="none" stroke-linecap="round"/>
-          <path class="tree-path sub-branch" d="M 200 230 Q 200 160 200 90" stroke="url(#trunkGrad)" stroke-width="5" fill="none" stroke-linecap="round"/>
-          
-          <path class="tree-path sub-branch" d="M 115 130 Q 80 110 70 80" stroke="url(#trunkGrad)" stroke-width="4" fill="none" stroke-linecap="round"/>
-          <path class="tree-path sub-branch" d="M 285 130 Q 320 110 330 80" stroke="url(#trunkGrad)" stroke-width="4" fill="none" stroke-linecap="round"/>
-          <path class="tree-path sub-branch" d="M 160 140 Q 130 90 150 60" stroke="url(#trunkGrad)" stroke-width="4" fill="none" stroke-linecap="round"/>
-          <path class="tree-path sub-branch" d="M 240 140 Q 270 90 250 60" stroke="url(#trunkGrad)" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <path class="tree-path branch-sub" d="M 250 260 Q 220 180 200 130" stroke="url(#trunkGradient)" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <path class="tree-path branch-sub" d="M 250 260 Q 280 180 300 130" stroke="url(#trunkGradient)" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <path class="tree-path branch-sub" d="M 130 170 Q 80 140 70 100" stroke="url(#trunkGradient)" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <path class="tree-path branch-sub" d="M 370 170 Q 420 140 430 100" stroke="url(#trunkGradient)" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <path class="tree-path branch-sub" d="M 190 140 Q 150 90 160 50" stroke="url(#trunkGradient)" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <path class="tree-path branch-sub" d="M 310 140 Q 350 90 340 50" stroke="url(#trunkGradient)" stroke-width="5" fill="none" stroke-linecap="round"/>
         </svg>
 
         <div class="blooming-canopy" id="treeCanopy"></div>
@@ -148,7 +153,7 @@
           <div class="page spread-page" id="page-1">
             <div class="left-side">
               <div class="photo-frame">
-                <img src="https://picsum.photos/400/500?random=1" alt="Memory 1" />
+                <img src="https://picsum.photos/600/750?random=1" alt="Memory 1" />
               </div>
             </div>
             <div class="right-side">
@@ -165,7 +170,7 @@
           <div class="page spread-page" id="page-2">
             <div class="left-side">
               <div class="photo-frame">
-                <img src="https://picsum.photos/400/500?random=2" alt="Memory 2" />
+                <img src="https://picsum.photos/600/750?random=2" alt="Memory 2" />
               </div>
             </div>
             <div class="right-side">
@@ -182,7 +187,7 @@
           <div class="page spread-page" id="page-3">
             <div class="left-side">
               <div class="photo-frame">
-                <img src="https://picsum.photos/400/500?random=3" alt="Memory 3" />
+                <img src="https://picsum.photos/600/750?random=3" alt="Memory 3" />
               </div>
             </div>
             <div class="right-side final-spread">
@@ -196,11 +201,11 @@
               <div class="quiz-container" id="quizContainer">
                 <h3 class="quiz-question">Question: Random? 🤔</h3>
                 <div class="quiz-options">
-                  <button class="quiz-opt" data-option="1">1:opt</button>
-                  <button class="quiz-opt" data-option="2">2:opt</button>
-                  <button class="quiz-opt" data-option="3">3:opt</button>
-                  <button class="quiz-opt" data-option="4">4:opt</button>
-                  <button class="quiz-opt" data-option="5">5:opt</button>
+                  <button class="quiz-opt" data-option="1">opt 1</button>
+                  <button class="quiz-opt" data-option="2">opt 2</button>
+                  <button class="quiz-opt" data-option="3">opt 3</button>
+                  <button class="quiz-opt" data-option="4">opt 4</button>
+                  <button class="quiz-opt" data-option="5">opt 5</button>
                 </div>
                 <div class="quiz-result" id="quizResult"></div>
               </div>

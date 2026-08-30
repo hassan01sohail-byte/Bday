@@ -64,7 +64,7 @@ function transitionToTreeStage() {
 
 function bloomCanopyFull() {
   const bloomItems = ['💖', '🌸', '🌺', '💗', '🌹', '💓', '🌷', '💕', '❤️', '🌼'];
-  const totalBlooms = 95;
+  const totalBlooms = 110;
 
   for (let i = 0; i < totalBlooms; i++) {
     setTimeout(() => {
@@ -72,32 +72,33 @@ function bloomCanopyFull() {
       item.className = 'bloom-item';
       item.innerHTML = bloomItems[Math.floor(Math.random() * bloomItems.length)];
       
-      // True parametric heart distribution for full canopy coverage
       const t = Math.random() * Math.PI * 2;
-      const r = Math.pow(Math.random(), 0.6) * 9.5; // Spread evenly across the heart shape
+      // Weighted distribution to create lush outer foliage and dense crown
+      const r = Math.pow(Math.random(), 0.5) * 115;
 
-      // Heart parametric formulas
+      // Parametric heart formulation matching natural tree arch
       const hx = 16 * Math.pow(Math.sin(t), 3);
       const hy = -(13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t));
 
-      // Map coordinates to SVG tree box (width: 360, center: 180, crown-center: 135)
-      const x = 180 + (hx * r);
-      const y = 135 + (hy * r);
+      // Percentages relative to treeCanopy
+      const leftPercent = 50 + ((hx / 16) * (r / 2.3));
+      const topPercent = 30 + ((hy / 16) * (r / 2.3));
       
-      const size = 0.95 + Math.random() * 0.65;
+      const size = 0.85 + Math.random() * 0.6;
 
-      item.style.left = `${x - 12}px`;
-      item.style.top = `${y - 12}px`;
+      item.style.left = `${leftPercent}%`;
+      item.style.top = `${topPercent}%`;
+      item.style.transform = `translate(-50%, -50%)`;
       item.style.fontSize = `${size}rem`;
 
       treeCanopy.appendChild(item);
-    }, i * 30);
+    }, i * 25);
   }
 
-  // Reveal centered button once tree finishes blooming
+  // Reveal proceed button reliably in view
   setTimeout(() => {
     proceedBookBtn.classList.remove('hidden');
-  }, totalBlooms * 30 + 350);
+  }, totalBlooms * 25 + 350);
 }
 
 proceedBookBtn.addEventListener('click', () => {
