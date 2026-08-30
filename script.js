@@ -59,12 +59,12 @@ function transitionToDramaticStage() {
 function transitionToTreeStage() {
   stageDramatic.classList.add('hidden');
   stageTree.classList.remove('hidden');
-  setTimeout(bloomCanopyFull, 1800);
+  setTimeout(bloomCanopyFull, 1600);
 }
 
 function bloomCanopyFull() {
   const bloomItems = ['💖', '🌸', '🌺', '💗', '🌹', '💓', '🌷', '💕', '❤️', '🌼'];
-  const totalBlooms = 65;
+  const totalBlooms = 95;
 
   for (let i = 0; i < totalBlooms; i++) {
     setTimeout(() => {
@@ -72,25 +72,32 @@ function bloomCanopyFull() {
       item.className = 'bloom-item';
       item.innerHTML = bloomItems[Math.floor(Math.random() * bloomItems.length)];
       
-      const angle = Math.random() * Math.PI * 2;
-      const r = Math.sqrt(Math.random()) * 110;
+      // True parametric heart distribution for full canopy coverage
+      const t = Math.random() * Math.PI * 2;
+      const r = Math.pow(Math.random(), 0.6) * 9.5; // Spread evenly across the heart shape
+
+      // Heart parametric formulas
+      const hx = 16 * Math.pow(Math.sin(t), 3);
+      const hy = -(13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t));
+
+      // Map coordinates to SVG tree box (width: 360, center: 180, crown-center: 135)
+      const x = 180 + (hx * r);
+      const y = 135 + (hy * r);
       
-      const x = 200 + r * 1.35 * Math.pow(Math.sin(angle), 3);
-      const y = 160 - r * (13 * Math.cos(angle) - 5 * Math.cos(2*angle) - 2 * Math.cos(3*angle) - Math.cos(4*angle)) / 16;
-      
-      const size = 1.1 + Math.random() * 0.7;
+      const size = 0.95 + Math.random() * 0.65;
 
       item.style.left = `${x - 12}px`;
       item.style.top = `${y - 12}px`;
       item.style.fontSize = `${size}rem`;
 
       treeCanopy.appendChild(item);
-    }, i * 45);
+    }, i * 30);
   }
 
+  // Reveal centered button once tree finishes blooming
   setTimeout(() => {
     proceedBookBtn.classList.remove('hidden');
-  }, totalBlooms * 45 + 400);
+  }, totalBlooms * 30 + 350);
 }
 
 proceedBookBtn.addEventListener('click', () => {
@@ -117,7 +124,7 @@ quizOptions.forEach(button => {
   });
 });
 
-// YOUR ORIGINAL MEMORY BOOK LOGIC
+// MEMORY BOOK LOGIC
 function triggerConfetti() {
   if (typeof confetti === 'function') {
     confetti({

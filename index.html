@@ -5,25 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Happy Birthday Memory Book 📖</title>
   <link rel="stylesheet" href="style.css" />
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
-  <!-- Offline Confetti Script -->
   <script src="confetti.browser.min.js"></script>
 </head>
 <body>
 
-  <!-- INTRO ANIMATION CONTAINER -->
   <div id="intro-overlay" class="intro-overlay">
     
-    <!-- STAGE 1: 3-Step Growing Heart -->
     <div class="intro-stage stage-bow" id="stage-bow">
       <div class="subtitle-text">a little something, for you</div>
       <div class="pulsing-heart" id="growingHeart">❤️</div>
     </div>
 
-    <!-- STAGE 2: Dramatic Text Reveal -->
     <div class="intro-stage stage-dramatic hidden" id="stage-dramatic">
       <div class="letterbox-bar bar-top"></div>
       <div class="dramatic-content">
@@ -34,7 +29,6 @@
       <div class="letterbox-bar bar-bot"></div>
     </div>
 
-    <!-- STAGE 3: Animated Rising Tree with Blooming Hearts & Flowers -->
     <div class="intro-stage stage-tree hidden" id="stage-tree">
       <div class="tree-text-overlay">
         <p class="tree-sub">and... make it count</p>
@@ -47,29 +41,35 @@
           <defs>
             <linearGradient id="trunkGrad" x1="0%" y1="100%" x2="0%" y2="0%">
               <stop offset="0%" stop-color="#3d1e1a" />
-              <stop offset="100%" stop-color="#6e3b35" />
+              <stop offset="100%" stop-color="#5a2d27" />
             </linearGradient>
           </defs>
-          <path class="tree-path trunk" d="M 200 500 C 200 420 195 350 200 240" stroke="url(#trunkGrad)" stroke-width="16" fill="none" stroke-linecap="round"/>
-          <path class="tree-path branch branch-l1" d="M 200 320 C 150 260 110 200 130 110" stroke="url(#trunkGrad)" stroke-width="10" fill="none" stroke-linecap="round"/>
-          <path class="tree-path branch branch-l2" d="M 160 220 C 120 180 90 140 100 80" stroke="url(#trunkGrad)" stroke-width="6" fill="none" stroke-linecap="round"/>
-          <path class="tree-path branch branch-r1" d="M 200 320 C 250 260 290 200 270 110" stroke="url(#trunkGrad)" stroke-width="10" fill="none" stroke-linecap="round"/>
-          <path class="tree-path branch branch-r2" d="M 240 220 C 280 180 310 140 300 80" stroke="url(#trunkGrad)" stroke-width="6" fill="none" stroke-linecap="round"/>
-          <path class="tree-path branch branch-c1" d="M 200 240 C 180 180 170 120 185 70" stroke="url(#trunkGrad)" stroke-width="7" fill="none" stroke-linecap="round"/>
-          <path class="tree-path branch branch-c2" d="M 200 240 C 220 180 230 120 215 70" stroke="url(#trunkGrad)" stroke-width="7" fill="none" stroke-linecap="round"/>
+          <path class="tree-path trunk" d="M 200 500 Q 198 380 200 270" stroke="url(#trunkGrad)" stroke-width="14" fill="none" stroke-linecap="round"/>
+          
+          <path class="tree-path branch-l1" d="M 200 270 C 130 240 70 160 100 80 C 120 40 180 50 195 100" stroke="url(#trunkGrad)" stroke-width="8" fill="none" stroke-linecap="round"/>
+          <path class="tree-path branch-r1" d="M 200 270 C 270 240 330 160 300 80 C 280 40 220 50 205 100" stroke="url(#trunkGrad)" stroke-width="8" fill="none" stroke-linecap="round"/>
+          
+          <path class="tree-path branch-c1" d="M 200 270 Q 185 190 150 120" stroke="url(#trunkGrad)" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <path class="tree-path branch-c2" d="M 200 270 Q 215 190 250 120" stroke="url(#trunkGrad)" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <path class="tree-path sub-branch" d="M 200 230 Q 200 160 200 90" stroke="url(#trunkGrad)" stroke-width="5" fill="none" stroke-linecap="round"/>
+          
+          <path class="tree-path sub-branch" d="M 115 130 Q 80 110 70 80" stroke="url(#trunkGrad)" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <path class="tree-path sub-branch" d="M 285 130 Q 320 110 330 80" stroke="url(#trunkGrad)" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <path class="tree-path sub-branch" d="M 160 140 Q 130 90 150 60" stroke="url(#trunkGrad)" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <path class="tree-path sub-branch" d="M 240 140 Q 270 90 250 60" stroke="url(#trunkGrad)" stroke-width="4" fill="none" stroke-linecap="round"/>
         </svg>
 
         <div class="blooming-canopy" id="treeCanopy"></div>
       </div>
 
-      <button class="proceed-book-btn hidden" id="proceedBookBtn">Open Memory Book 📖</button>
+      <div class="btn-holder">
+        <button class="proceed-book-btn hidden" id="proceedBookBtn">Open Memory Book 📖</button>
+      </div>
     </div>
 
   </div>
 
-  <!-- MAIN MEMORY BOOK APP CONTAINER -->
   <div class="main-app-container hidden" id="mainApp">
-    <!-- Background Layer (Balloons & Cheering Characters) -->
     <div class="party-bg">
       <div class="balloon b1">🎈</div>
       <div class="balloon b2">🎈</div>
@@ -121,12 +121,8 @@
     </div>
 
     <div class="book-container">
-      
-      <!-- 3D Perspective Wrapper -->
       <div class="book-perspective">
         <div class="spiral-book closed" id="spiralBook">
-          
-          <!-- Metallic Spiral Spine -->
           <div class="spiral-spine">
             <div class="ring"></div>
             <div class="ring"></div>
@@ -140,7 +136,6 @@
             <div class="ring"></div>
           </div>
 
-          <!-- COVER PAGE (Page 0) -->
           <div class="page cover-page active" id="page-0">
             <div class="cover-content">
               <div class="cover-badge">🎁 SPECIAL EDITION</div>
@@ -150,7 +145,6 @@
             </div>
           </div>
 
-          <!-- SPREAD 1 (Page 1) -->
           <div class="page spread-page" id="page-1">
             <div class="left-side">
               <div class="photo-frame">
@@ -168,7 +162,6 @@
             </div>
           </div>
 
-          <!-- SPREAD 2 (Page 2) -->
           <div class="page spread-page" id="page-2">
             <div class="left-side">
               <div class="photo-frame">
@@ -186,7 +179,6 @@
             </div>
           </div>
 
-          <!-- SPREAD 3 / FINAL PAGE (Page 3) -->
           <div class="page spread-page" id="page-3">
             <div class="left-side">
               <div class="photo-frame">
@@ -201,15 +193,14 @@
               </p>
               <button class="confetti-btn" id="celebrateBtn">Pop Confetti! 🎊</button>
 
-              <!-- END OF BOOK QUESTION SECTION -->
               <div class="quiz-container" id="quizContainer">
-                <h3 class="quiz-question">Question: Random 🤔</h3>
+                <h3 class="quiz-question">Question: Random? 🤔</h3>
                 <div class="quiz-options">
-                  <button class="quiz-opt" data-option="1">1: opt1</button>
-                  <button class="quiz-opt" data-option="2">2: opt2</button>
-                  <button class="quiz-opt" data-option="3">3: opt3</button>
-                  <button class="quiz-opt" data-option="4">4: opt4</button>
-                  <button class="quiz-opt" data-option="5">5: opt5</button>
+                  <button class="quiz-opt" data-option="1">1:opt</button>
+                  <button class="quiz-opt" data-option="2">2:opt</button>
+                  <button class="quiz-opt" data-option="3">3:opt</button>
+                  <button class="quiz-opt" data-option="4">4:opt</button>
+                  <button class="quiz-opt" data-option="5">5:opt</button>
                 </div>
                 <div class="quiz-result" id="quizResult"></div>
               </div>
@@ -220,7 +211,6 @@
         </div>
       </div>
 
-      <!-- Navigation Bar -->
       <div class="controls hidden-bar" id="controlsBar">
         <button id="prevBtn">❮ Previous</button>
         <span id="pageIndicator">Page 1 of 3</span>
