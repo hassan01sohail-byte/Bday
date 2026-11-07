@@ -3,128 +3,405 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Happy Birthday Memory Book 📖</title>
+
+  <!-- Main CSS -->
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,600;1,400&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- Confetti Library -->
   <script src="confetti.browser.min.js"></script>
 </head>
+
 <body>
 
+  <!-- =====================================================
+       INTRO OVERLAY
+       ===================================================== -->
+
   <div id="intro-overlay" class="intro-overlay">
-    
-    <div class="intro-stage stage-bow" id="stage-bow">
-      <div class="subtitle-text">a little something, for you</div>
-      <div class="pulsing-heart" id="growingHeart">❤️</div>
+
+    <!-- ================= STAGE 1 ================= -->
+
+    <div
+      class="intro-stage stage-bow"
+      id="stage-bow"
+    >
+      <div class="subtitle-text">
+        a little something, for Nabster
+      </div>
+
+      <div
+        class="pulsing-heart"
+        id="growingHeart"
+      >
+        ❤️
+      </div>
     </div>
 
-    <div class="intro-stage stage-dramatic hidden" id="stage-dramatic">
+
+    <!-- ================= STAGE 2 ================= -->
+
+    <div
+      class="intro-stage stage-dramatic hidden"
+      id="stage-dramatic"
+    >
+
       <div class="letterbox-bar bar-top"></div>
+
       <div class="dramatic-content">
-        <p class="sub-wish">make a wish...</p>
-        <h1 class="dramatic-title">Happy Birthday</h1>
-        <p class="sub-footer">to someone worth celebrating</p>
+
+        <p class="sub-wish">
+          make a wish...
+        </p>
+
+        <h1 class="dramatic-title">
+          Happy Birthday
+        </h1>
+
+        <p class="sub-footer">
+          Nabster
+        </p>
+
       </div>
+
       <div class="letterbox-bar bar-bot"></div>
+
     </div>
 
-    <div class="intro-stage stage-tree hidden" id="stage-tree">
+
+    <!-- ================= STAGE 3 ================= -->
+
+    <div
+      class="intro-stage stage-tree hidden"
+      id="stage-tree"
+    >
+
       <div class="tree-text-overlay">
-        <p class="tree-sub">and... make it count</p>
-        <h2 class="tree-title">Happy Birthday</h2>
-        <p class="tree-footer">here's to a year that blooms</p>
+
+        <p class="tree-sub">
+          and... make it count
+        </p>
+
+        <h2 class="tree-title">
+          Happy Birthday
+        </h2>
+
+        <p class="tree-footer">
+          here's to a year that blooms
+        </p>
+
       </div>
-      
+
+
       <div class="tree-canvas-container">
-        <svg class="tree-svg" viewBox="0 0 500 600">
+
+        <svg
+          class="tree-svg"
+          viewBox="0 0 500 600"
+          aria-hidden="true"
+        >
+
           <defs>
-            <linearGradient id="trunkGradient" x1="0%" y1="100%" x2="0%" y2="0%">
-              <stop offset="0%" stop-color="#2d130f" />
-              <stop offset="60%" stop-color="#4a221b" />
-              <stop offset="100%" stop-color="#6e352b" />
+
+            <linearGradient
+              id="trunkGradient"
+              x1="0%"
+              y1="100%"
+              x2="0%"
+              y2="0%"
+            >
+
+              <stop
+                offset="0%"
+                stop-color="#2d130f"
+              />
+
+              <stop
+                offset="60%"
+                stop-color="#4a221b"
+              />
+
+              <stop
+                offset="100%"
+                stop-color="#6e352b"
+              />
+
             </linearGradient>
+
           </defs>
 
-          <path class="tree-path trunk-main" d="M 250 600 C 250 500 240 430 250 330" stroke="url(#trunkGradient)" stroke-width="20" fill="none" stroke-linecap="round"/>
-          <path class="tree-path trunk-base-l" d="M 250 560 Q 210 590 180 600" stroke="url(#trunkGradient)" stroke-width="10" fill="none" stroke-linecap="round"/>
-          <path class="tree-path trunk-base-r" d="M 250 560 Q 290 590 320 600" stroke="url(#trunkGradient)" stroke-width="10" fill="none" stroke-linecap="round"/>
 
-          <path class="tree-path branch-outer-l" d="M 250 340 C 160 300 70 200 110 100 C 140 35 230 45 245 140" stroke="url(#trunkGradient)" stroke-width="11" fill="none" stroke-linecap="round"/>
-          <path class="tree-path branch-outer-r" d="M 250 340 C 340 300 430 200 390 100 C 360 35 270 45 255 140" stroke="url(#trunkGradient)" stroke-width="11" fill="none" stroke-linecap="round"/>
+          <!-- Main trunk -->
 
-          <path class="tree-path branch-mid-l" d="M 250 310 C 190 260 140 180 180 110 C 205 75 240 100 245 130" stroke="url(#trunkGradient)" stroke-width="8" fill="none" stroke-linecap="round"/>
-          <path class="tree-path branch-mid-r" d="M 250 310 C 310 260 360 180 320 110 C 295 75 260 100 255 130" stroke="url(#trunkGradient)" stroke-width="8" fill="none" stroke-linecap="round"/>
-          
-          <path class="tree-path branch-sub" d="M 250 260 Q 220 180 200 130" stroke="url(#trunkGradient)" stroke-width="6" fill="none" stroke-linecap="round"/>
-          <path class="tree-path branch-sub" d="M 250 260 Q 280 180 300 130" stroke="url(#trunkGradient)" stroke-width="6" fill="none" stroke-linecap="round"/>
-          <path class="tree-path branch-sub" d="M 130 170 Q 80 140 70 100" stroke="url(#trunkGradient)" stroke-width="5" fill="none" stroke-linecap="round"/>
-          <path class="tree-path branch-sub" d="M 370 170 Q 420 140 430 100" stroke="url(#trunkGradient)" stroke-width="5" fill="none" stroke-linecap="round"/>
-          <path class="tree-path branch-sub" d="M 190 140 Q 150 90 160 50" stroke="url(#trunkGradient)" stroke-width="5" fill="none" stroke-linecap="round"/>
-          <path class="tree-path branch-sub" d="M 310 140 Q 350 90 340 50" stroke="url(#trunkGradient)" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <path
+            class="tree-path trunk-main"
+            d="M 250 600 C 250 500 240 430 250 330"
+            stroke="url(#trunkGradient)"
+            stroke-width="20"
+            fill="none"
+            stroke-linecap="round"
+          />
+
+
+          <!-- Base -->
+
+          <path
+            class="tree-path trunk-base-l"
+            d="M 250 560 Q 210 590 180 600"
+            stroke="url(#trunkGradient)"
+            stroke-width="10"
+            fill="none"
+            stroke-linecap="round"
+          />
+
+          <path
+            class="tree-path trunk-base-r"
+            d="M 250 560 Q 290 590 320 600"
+            stroke="url(#trunkGradient)"
+            stroke-width="10"
+            fill="none"
+            stroke-linecap="round"
+          />
+
+
+          <!-- Outer branches -->
+
+          <path
+            class="tree-path branch-outer-l"
+            d="M 250 340 C 160 300 70 200 110 100 C 140 35 230 45 245 140"
+            stroke="url(#trunkGradient)"
+            stroke-width="11"
+            fill="none"
+            stroke-linecap="round"
+          />
+
+          <path
+            class="tree-path branch-outer-r"
+            d="M 250 340 C 340 300 430 200 390 100 C 360 35 270 45 255 140"
+            stroke="url(#trunkGradient)"
+            stroke-width="11"
+            fill="none"
+            stroke-linecap="round"
+          />
+
+
+          <!-- Middle branches -->
+
+          <path
+            class="tree-path branch-mid-l"
+            d="M 250 310 C 190 260 140 180 180 110 C 205 75 240 100 245 130"
+            stroke="url(#trunkGradient)"
+            stroke-width="8"
+            fill="none"
+            stroke-linecap="round"
+          />
+
+          <path
+            class="tree-path branch-mid-r"
+            d="M 250 310 C 310 260 360 180 320 110 C 295 75 260 100 255 130"
+            stroke="url(#trunkGradient)"
+            stroke-width="8"
+            fill="none"
+            stroke-linecap="round"
+          />
+
+
+          <!-- Small branches -->
+
+          <path
+            class="tree-path branch-sub"
+            d="M 250 260 Q 220 180 200 130"
+            stroke="url(#trunkGradient)"
+            stroke-width="6"
+            fill="none"
+            stroke-linecap="round"
+          />
+
+          <path
+            class="tree-path branch-sub"
+            d="M 250 260 Q 280 180 300 130"
+            stroke="url(#trunkGradient)"
+            stroke-width="6"
+            fill="none"
+            stroke-linecap="round"
+          />
+
+          <path
+            class="tree-path branch-sub"
+            d="M 130 170 Q 80 140 70 100"
+            stroke="url(#trunkGradient)"
+            stroke-width="5"
+            fill="none"
+            stroke-linecap="round"
+          />
+
+          <path
+            class="tree-path branch-sub"
+            d="M 370 170 Q 420 140 430 100"
+            stroke="url(#trunkGradient)"
+            stroke-width="5"
+            fill="none"
+            stroke-linecap="round"
+          />
+
+          <path
+            class="tree-path branch-sub"
+            d="M 190 140 Q 150 90 160 50"
+            stroke="url(#trunkGradient)"
+            stroke-width="5"
+            fill="none"
+            stroke-linecap="round"
+          />
+
+          <path
+            class="tree-path branch-sub"
+            d="M 310 140 Q 350 90 340 50"
+            stroke="url(#trunkGradient)"
+            stroke-width="5"
+            fill="none"
+            stroke-linecap="round"
+          />
+
         </svg>
 
-        <div class="blooming-canopy" id="treeCanopy"></div>
+
+        <!-- Dynamic flowers/hearts -->
+
+        <div
+          class="blooming-canopy"
+          id="treeCanopy"
+        ></div>
+
       </div>
+
     </div>
 
   </div>
 
-  <div class="main-app-container hidden" id="mainApp">
+
+  <!-- =====================================================
+       MAIN MEMORY BOOK APPLICATION
+       ===================================================== -->
+
+  <div
+    class="main-app-container hidden"
+    id="mainApp"
+  >
+
+    <!-- ================= PARTY BACKGROUND ================= -->
+
     <div class="party-bg">
+
+      <!-- Balloons -->
+
       <div class="balloon b1">🎈</div>
       <div class="balloon b2">🎈</div>
       <div class="balloon b3">🎈</div>
       <div class="balloon b4">🎈</div>
       <div class="balloon b5">🎈</div>
 
+
+      <!-- ================= LEFT CROWD ================= -->
+
       <div class="crowd left-crowd">
+
         <div class="person cheer-1">
+
           <div class="hat">🎉</div>
           <div class="head">😄</div>
           <div class="body">👕</div>
           <div class="arm arm-left">🙌</div>
+
         </div>
+
+
         <div class="person cheer-2">
+
           <div class="hat">🥳</div>
           <div class="head">😃</div>
           <div class="body">👗</div>
           <div class="arm arm-right">🥂</div>
+
         </div>
+
+
         <div class="person cheer-3">
+
           <div class="hat">🎊</div>
           <div class="head">😆</div>
           <div class="body">🎽</div>
           <div class="arm arm-left">👋</div>
+
         </div>
+
       </div>
 
+
+      <!-- ================= RIGHT CROWD ================= -->
+
       <div class="crowd right-crowd">
+
         <div class="person cheer-2">
+
           <div class="hat">🎉</div>
           <div class="head">🤩</div>
           <div class="body">👚</div>
           <div class="arm arm-right">🙌</div>
+
         </div>
+
+
         <div class="person cheer-1">
+
           <div class="hat">🥳</div>
           <div class="head">😎</div>
           <div class="body">👔</div>
           <div class="arm arm-left">🍹</div>
+
         </div>
+
+
         <div class="person cheer-3">
+
           <div class="hat">🎊</div>
           <div class="head">😁</div>
           <div class="body">👗</div>
           <div class="arm arm-right">✨</div>
+
         </div>
+
       </div>
+
     </div>
+
+
+    <!-- =====================================================
+         BOOK CONTAINER
+         ===================================================== -->
 
     <div class="book-container">
+
       <div class="book-perspective">
-        <div class="spiral-book closed" id="spiralBook">
+
+        <div
+          class="spiral-book closed"
+          id="spiralBook"
+        >
+
+          <!-- ================= SPIRAL ================= -->
+
           <div class="spiral-spine">
+
             <div class="ring"></div>
             <div class="ring"></div>
             <div class="ring"></div>
@@ -135,92 +412,330 @@
             <div class="ring"></div>
             <div class="ring"></div>
             <div class="ring"></div>
+
           </div>
 
-          <div class="page cover-page active" id="page-0">
+
+          <!-- =================================================
+               COVER
+               ================================================= -->
+
+          <div
+            class="page cover-page active"
+            id="page-0"
+          >
+
             <div class="cover-content">
-              <div class="cover-badge">🎁 SPECIAL EDITION</div>
-              <h1 class="cover-title">🎉 Happy Birthday! 🎉</h1>
-              <p class="cover-subtitle">A Book of Favorite Memories</p>
-              <button class="open-book-btn" id="openBookBtn">Open Book 📖</button>
-            </div>
-          </div>
 
-          <div class="page spread-page" id="page-1">
-            <div class="left-side">
-              <div class="photo-frame">
-                <img src="https://picsum.photos/600/750?random=1" alt="Memory 1" />
-              </div>
-            </div>
-            <div class="right-side">
-              <div class="page-number">1</div>
-              <h2>The Journey Begins 🚀</h2>
-              <p class="message">
-                Wishing you the happiest of birthdays! Looking back through all our memories, 
-                every moment is full of laughs, fun, and great stories.
+              <h1 class="cover-title">
+                🎉 Happy Birthday! 🎉
+              </h1>
+
+              <p class="cover-subtitle">
+                A Book of Memories
               </p>
-              <div class="page-decor">✨ 🌟 ✨</div>
+
+              <button
+                class="open-book-btn"
+                id="openBookBtn"
+                type="button"
+              >
+                Open Book 📖
+              </button>
+
             </div>
+
           </div>
 
-          <div class="page spread-page" id="page-2">
+
+          <!-- =================================================
+               PAGE 1
+               ================================================= -->
+
+          <div
+            class="page spread-page"
+            id="page-1"
+          >
+
             <div class="left-side">
+
               <div class="photo-frame">
-                <img src="https://picsum.photos/600/750?random=2" alt="Memory 2" />
+
+                <img
+                  src="img1.png"
+                  alt="Memory 1"
+                />
+
               </div>
+
             </div>
+
+
             <div class="right-side">
-              <div class="page-number">2</div>
-              <h2>Unforgettable Moments 🥳</h2>
+
+              <div class="page-number">
+                1
+              </div>
+
+              <h2>
+                The Journey Begins 🚀
+              </h2>
+
               <p class="message">
-                Thank you for being such an awesome friend. Here’s to crushing more goals, 
-                taking on new adventures, and making this year your best one yet!
+
+                Main 24 September ko baitha howa aur us din main bht paraishaan tha, Khair raat ko to soo gaya, laikin subha ka to nahi pata tha keh subha kia hona hai but then i was added to a random gc where we met and not knowing eachother nor our future friendship.😅
+
+                <br><br>
+
+                We had our first chat there and then somehow became best friends,😉😎
+
+                <br><br>
+
+                I never thought keh aisa bhi kabhi hoo ga cuz of my past and recently happened incidents, yet it happened and i am pleased to have you by my side 😊
+
               </p>
-              <div class="page-decor">🥂 🎊 🎉</div>
+
+              <div class="page-decor">
+                ✨ 🌟 ✨
+              </div>
+
             </div>
+
           </div>
 
-          <div class="page spread-page" id="page-3">
+
+          <!-- =================================================
+               PAGE 2
+               ================================================= -->
+
+          <div
+            class="page spread-page"
+            id="page-2"
+          >
+
             <div class="left-side">
+
               <div class="photo-frame">
-                <img src="https://picsum.photos/600/750?random=3" alt="Memory 3" />
+
+                <img
+                  src="img2.png"
+                  alt="Memory 2"
+                />
+
               </div>
+
             </div>
+
+
+            <div class="right-side">
+
+              <div class="page-number">
+                2
+              </div>
+
+              <h2>
+                Unforgettable Moments 🥳
+              </h2>
+
+              <p class="message">
+
+                We've been friends for 2 years and shared our laughter, created Memories and not just that we also helped eachother out with the work that we thought we can't.🤗
+
+                <br><br>
+
+                Not only but also the counseling and i really mean that.💕
+
+                <br><br>
+
+                Nothing can pay off, what you did.😊
+
+              </p>
+
+              <div class="page-decor">
+                🥂 🎊 🎉
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- =================================================
+               PAGE 3 / FINAL PAGE
+               ================================================= -->
+
+          <div
+            class="page spread-page"
+            id="page-3"
+          >
+
+            <div class="left-side">
+
+              <div class="photo-frame">
+
+                <img
+                  src="Newimg.png"
+                  alt="Memory 3"
+                />
+
+              </div>
+
+            </div>
+
+
             <div class="right-side final-spread">
-              <div class="page-number">3</div>
-              <h2>Cheers to You! 🎂</h2>
-              <p class="message">
-                May your year ahead be packed with success, good health, and endless happiness!
-              </p>
-              <button class="confetti-btn" id="celebrateBtn">Pop Confetti! 🎊</button>
 
-              <div class="quiz-container" id="quizContainer">
-                <h3 class="quiz-question">Question:Anything? 🤔</h3>
+              <div class="page-number">
+                3
+              </div>
+
+              <h2>
+                Cheers to You! 🎂
+              </h2>
+
+              <p class="message">
+
+                May your year ahead be packed with success, good health, and endless happiness!
+
+                <br><br>
+
+                I hope next year we have more stronger bond and we stay friends 😁
+
+                <br><br>
+
+                Enjoy your Birthday and stay blessed and most importantly Happy😊🤗
+
+              </p>
+
+
+              <!-- Confetti -->
+
+              <button
+                class="confetti-btn"
+                id="celebrateBtn"
+                type="button"
+              >
+                Click for Party Poppers! 🎊
+              </button>
+
+
+              <!-- ================= QUIZ ================= -->
+
+              <div
+                class="quiz-container"
+                id="quizContainer"
+              >
+
+                <h2>
+                  Quick Question
+                </h2>
+
+                <h3 class="quiz-question">
+                  Who are you? 🤔
+                </h3>
+
+
                 <div class="quiz-options">
-                  <button class="quiz-opt" data-option="1">1</button>
-                  <button class="quiz-opt" data-option="2">2</button>
-                  <button class="quiz-opt" data-option="3">3</button>
-                  <button class="quiz-opt" data-option="4">4</button>
-                  <button class="quiz-opt" data-option="5">5</button>
+
+                  <button
+                    class="quiz-opt"
+                    data-option="1"
+                    type="button"
+                  >
+                    1. Abu g
+                  </button>
+
+                  <button
+                    class="quiz-opt"
+                    data-option="2"
+                    type="button"
+                  >
+                    2. Nabster
+                  </button>
+
+                  <button
+                    class="quiz-opt"
+                    data-option="3"
+                    type="button"
+                  >
+                    3. Bestie
+                  </button>
+
+                  <button
+                    class="quiz-opt"
+                    data-option="4"
+                    type="button"
+                  >
+                    4. Bhen
+                  </button>
+
+                  <button
+                    class="quiz-opt"
+                    data-option="5"
+                    type="button"
+                  >
+                    5. All of them
+                  </button>
+
                 </div>
-                <div class="quiz-result" id="quizResult"></div>
+
+
+                <div
+                  class="quiz-result"
+                  id="quizResult"
+                  aria-live="polite"
+                ></div>
+
               </div>
 
             </div>
+
           </div>
 
         </div>
+
       </div>
 
-      <div class="controls hidden-bar" id="controlsBar">
-        <button id="prevBtn">❮ Previous</button>
-        <span id="pageIndicator">Page 1 of 3</span>
-        <button id="nextBtn">Next ❯</button>
+
+      <!-- =====================================================
+           NAVIGATION
+           ===================================================== -->
+
+      <div
+        class="controls hidden-bar"
+        id="controlsBar"
+      >
+
+        <button
+          id="prevBtn"
+          type="button"
+        >
+          ❮ Previous
+        </button>
+
+        <span id="pageIndicator">
+          Cover
+        </span>
+
+        <button
+          id="nextBtn"
+          type="button"
+        >
+          Next ❯
+        </button>
+
       </div>
 
     </div>
+
   </div>
 
+
+  <!-- =====================================================
+       JAVASCRIPT
+       ===================================================== -->
+
   <script src="script.js"></script>
+
 </body>
 </html>

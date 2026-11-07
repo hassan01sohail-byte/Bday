@@ -1,10 +1,15 @@
+/* =========================================================
+   GLOBAL RESET
+   ========================================================= */
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-html, body {
+html,
+body {
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -14,352 +19,904 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: radial-gradient(circle at center, #2e124d, #0d011c);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  background:
+    radial-gradient(
+      circle at center,
+      #2e124d,
+      #0d011c
+    );
+
+  font-family:
+    'Segoe UI',
+    Tahoma,
+    Geneva,
+    Verdana,
+    sans-serif;
+
   color: #2f3542;
   position: relative;
 }
 
-/* Background Balloons & Cheering Crowd */
+
+/* =========================================================
+   GENERAL HIDDEN STATE
+   ========================================================= */
+
+.hidden {
+  display: none !important;
+  pointer-events: none !important;
+}
+
+
+/* =========================================================
+   MAIN APP
+   ========================================================= */
+
+.main-app-container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+
+  opacity: 1;
+
+  transition:
+    opacity 1s ease,
+    transform 1s ease;
+}
+
+.main-app-container.hidden {
+  opacity: 0;
+}
+
+.main-app-container.app-visible {
+  opacity: 1;
+}
+
+
+/* =========================================================
+   PARTY BACKGROUND
+   ========================================================= */
+
 .party-bg {
   position: absolute;
   inset: 0;
+
   pointer-events: none;
   z-index: 1;
+
+  overflow: hidden;
 }
+
+
+/* =========================================================
+   BALLOONS
+   ========================================================= */
 
 .balloon {
   position: absolute;
+
   font-size: 2.8rem;
+
   bottom: -100px;
-  animation: floatUp 8s linear infinite;
+
   opacity: 0.7;
+
+  animation:
+    floatUp 8s linear infinite;
+
+  user-select: none;
 }
 
-.b1 { left: 5%; animation-duration: 9s; }
-.b2 { left: 20%; animation-duration: 7s; animation-delay: 2s; }
-.b3 { left: 50%; animation-duration: 10s; animation-delay: 1s; }
-.b4 { left: 80%; animation-duration: 8s; animation-delay: 3s; }
-.b5 { left: 92%; animation-duration: 6.5s; }
+.b1 {
+  left: 5%;
+  animation-duration: 9s;
+}
+
+.b2 {
+  left: 20%;
+  animation-duration: 7s;
+  animation-delay: 2s;
+}
+
+.b3 {
+  left: 50%;
+  animation-duration: 10s;
+  animation-delay: 1s;
+}
+
+.b4 {
+  left: 80%;
+  animation-duration: 8s;
+  animation-delay: 3s;
+}
+
+.b5 {
+  left: 92%;
+  animation-duration: 6.5s;
+}
 
 @keyframes floatUp {
-  0% { transform: translateY(0) rotate(0deg); opacity: 0.7; }
-  100% { transform: translateY(-110vh) rotate(20deg); opacity: 0; }
+
+  0% {
+    transform:
+      translateY(0)
+      rotate(0deg);
+
+    opacity: 0.7;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+
+  100% {
+    transform:
+      translateY(-110vh)
+      rotate(20deg);
+
+    opacity: 0;
+  }
 }
 
-/* Cheering Crowd Styling */
+
+/* =========================================================
+   CHEERING CROWD
+   ========================================================= */
+
 .crowd {
   position: absolute;
+
   bottom: 10px;
+
   display: flex;
+
   gap: 15px;
+
   z-index: 1;
 }
 
-.left-crowd { left: 20px; }
-.right-crowd { right: 20px; }
+.left-crowd {
+  left: 20px;
+}
+
+.right-crowd {
+  right: 20px;
+}
 
 .person {
   display: flex;
   flex-direction: column;
   align-items: center;
+
   font-size: 2.2rem;
+
   position: relative;
+
   user-select: none;
 }
 
-.person .hat { font-size: 1.4rem; margin-bottom: -10px; }
-.person .head { font-size: 2.4rem; }
-.person .body { font-size: 2rem; margin-top: -8px; }
-.person .arm { position: absolute; font-size: 1.6rem; top: 15px; }
+.person .hat {
+  font-size: 1.4rem;
+  margin-bottom: -10px;
+}
 
-.arm-left { left: -15px; animation: waveLeft 0.8s ease-in-out infinite alternate; }
-.arm-right { right: -15px; animation: waveRight 0.8s ease-in-out infinite alternate; }
+.person .head {
+  font-size: 2.4rem;
+}
 
-.cheer-1 { animation: jump 0.7s ease-in-out infinite alternate; }
-.cheer-2 { animation: sway 0.9s ease-in-out infinite alternate; animation-delay: 0.2s; }
-.cheer-3 { animation: jump 0.6s ease-in-out infinite alternate; animation-delay: 0.4s; }
+.person .body {
+  font-size: 2rem;
+  margin-top: -8px;
+}
+
+.person .arm {
+  position: absolute;
+
+  font-size: 1.6rem;
+
+  top: 15px;
+}
+
+.arm-left {
+  left: -15px;
+
+  animation:
+    waveLeft
+    0.8s
+    ease-in-out
+    infinite alternate;
+}
+
+.arm-right {
+  right: -15px;
+
+  animation:
+    waveRight
+    0.8s
+    ease-in-out
+    infinite alternate;
+}
+
+.cheer-1 {
+  animation:
+    jump
+    0.7s
+    ease-in-out
+    infinite alternate;
+}
+
+.cheer-2 {
+  animation:
+    sway
+    0.9s
+    ease-in-out
+    infinite alternate;
+
+  animation-delay: 0.2s;
+}
+
+.cheer-3 {
+  animation:
+    jump
+    0.6s
+    ease-in-out
+    infinite alternate;
+
+  animation-delay: 0.4s;
+}
 
 @keyframes jump {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-30px); }
+
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-30px);
+  }
 }
 
 @keyframes sway {
-  0% { transform: rotate(-8deg) translateY(0); }
-  100% { transform: rotate(8deg) translateY(-20px); }
+
+  0% {
+    transform:
+      rotate(-8deg)
+      translateY(0);
+  }
+
+  100% {
+    transform:
+      rotate(8deg)
+      translateY(-20px);
+  }
 }
 
-@keyframes waveLeft { 0% { transform: rotate(-20deg); } 100% { transform: rotate(20deg); } }
-@keyframes waveRight { 0% { transform: rotate(20deg); } 100% { transform: rotate(-20deg); } }
+@keyframes waveLeft {
 
-/* Main Container */
+  0% {
+    transform: rotate(-20deg);
+  }
+
+  100% {
+    transform: rotate(20deg);
+  }
+}
+
+@keyframes waveRight {
+
+  0% {
+    transform: rotate(20deg);
+  }
+
+  100% {
+    transform: rotate(-20deg);
+  }
+}
+
+
+/* =========================================================
+   BOOK CONTAINER
+   ========================================================= */
+
 .book-container {
   position: relative;
+
   z-index: 10;
+
   display: flex;
+
   flex-direction: column;
+
   align-items: center;
+
   justify-content: center;
+
   height: 100vh;
   width: 100vw;
+
   padding: 10px;
 }
 
 .book-perspective {
   perspective: 1600px;
+
   display: flex;
+
   justify-content: center;
+
   align-items: center;
+
   height: 520px;
 }
 
-/* 3D Spiral Book */
+
+/* =========================================================
+   3D SPIRAL BOOK
+   ========================================================= */
+
 .spiral-book {
   position: relative;
+
   height: 500px;
+
   transform-style: preserve-3d;
-  transition: width 0.8s cubic-bezier(0.4, 0.2, 0.2, 1.1),
-              transform 0.8s cubic-bezier(0.4, 0.2, 0.2, 1.1);
+
+  transition:
+    width 0.8s
+    cubic-bezier(0.4, 0.2, 0.2, 1.1),
+
+    transform 0.8s
+    cubic-bezier(0.4, 0.2, 0.2, 1.1),
+
+    box-shadow 0.8s ease;
 }
 
 .spiral-book.closed {
   width: 380px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+
+  box-shadow:
+    0 15px 35px
+    rgba(0, 0, 0, 0.6);
 }
 
 .spiral-book.open {
   width: 760px;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+
+  box-shadow:
+    0 25px 60px
+    rgba(0, 0, 0, 0.6);
 }
 
-/* Metallic Spiral Spine */
+
+/* =========================================================
+   SPIRAL SPINE
+   ========================================================= */
+
 .spiral-spine {
   position: absolute;
+
   top: 15px;
   bottom: 15px;
+
   width: 30px;
+
   display: flex;
+
   flex-direction: column;
+
   justify-content: space-between;
+
   align-items: center;
+
   z-index: 30;
+
   pointer-events: none;
-  transition: left 0.8s ease;
+
+  transition:
+    left 0.8s ease,
+    transform 0.8s ease;
 }
 
-.spiral-book.closed .spiral-spine { left: -12px; }
-.spiral-book.open .spiral-spine { left: 50%; transform: translateX(-50%); }
+.spiral-book.closed .spiral-spine {
+  left: -12px;
+
+  transform: none;
+}
+
+.spiral-book.open .spiral-spine {
+  left: 50%;
+
+  transform: translateX(-50%);
+}
 
 .ring {
   width: 32px;
   height: 12px;
-  background: linear-gradient(180deg, #eaedd0, #718093, #dcdde1);
+
+  background:
+    linear-gradient(
+      180deg,
+      #eaedd0,
+      #718093,
+      #dcdde1
+    );
+
   border-radius: 6px;
-  box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.5);
+
+  box-shadow:
+    2px 3px 6px
+    rgba(0, 0, 0, 0.5);
 }
 
-/* Pages Styling */
+
+/* =========================================================
+   PAGES
+   ========================================================= */
+
 .page {
   position: absolute;
+
   inset: 0;
+
   width: 100%;
   height: 100%;
+
   background: #fff;
+
   border-radius: 12px;
+
   overflow: hidden;
+
   transform-origin: left center;
+
   opacity: 0;
+
   visibility: hidden;
-  transform: rotateY(-90deg);
-  transition: transform 0.7s cubic-bezier(0.645, 0.045, 0.355, 1),
-              opacity 0.5s ease,
-              visibility 0.7s ease;
+
+  transform:
+    rotateY(-90deg)
+    translateZ(0);
+
+  backface-visibility: hidden;
+
+  transition:
+    transform 0.7s
+    cubic-bezier(
+      0.645,
+      0.045,
+      0.355,
+      1
+    ),
+
+    opacity 0.5s ease,
+
+    visibility 0.7s ease;
 }
 
 .page.active {
   opacity: 1;
+
   visibility: visible;
-  transform: rotateY(0deg);
+
+  transform:
+    rotateY(0deg)
+    translateZ(0);
 }
 
-/* Cover Page */
+
+/* =========================================================
+   COVER PAGE
+   ========================================================= */
+
 .cover-page {
-  background: linear-gradient(135deg, #ff4757, #ff6b81);
+  background:
+    linear-gradient(
+      135deg,
+      #ff4757,
+      #ff6b81
+    );
+
   color: #fff;
+
   display: flex;
+
   flex-direction: column;
+
   justify-content: center;
+
   align-items: center;
+
   text-align: center;
+
   padding: 35px;
+
   border: 5px solid #ffd32a;
 }
 
+.cover-content {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
 .cover-badge {
-  background: rgba(255, 255, 255, 0.2);
+  background:
+    rgba(255, 255, 255, 0.2);
+
   padding: 6px 16px;
+
   border-radius: 15px;
+
   font-size: 0.85rem;
+
   font-weight: bold;
+
   letter-spacing: 1px;
+
   margin-bottom: 25px;
 }
 
 .cover-title {
   font-size: 2.3rem;
+
   margin-bottom: 12px;
-  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+
+  text-shadow:
+    0 2px 5px
+    rgba(0, 0, 0, 0.2);
 }
 
 .cover-subtitle {
   font-size: 1.1rem;
+
   opacity: 0.9;
+
   margin-bottom: 35px;
 }
 
+
+/* =========================================================
+   OPEN BOOK BUTTON
+   ========================================================= */
+
 .open-book-btn {
   background: #ffd32a;
+
   color: #2f3542;
+
   border: none;
+
   padding: 12px 28px;
+
   font-size: 1.05rem;
+
   font-weight: bold;
+
   border-radius: 25px;
+
   cursor: pointer;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
-  transition: transform 0.2s, background 0.2s;
-  animation: pulse 1.5s infinite;
+
+  box-shadow:
+    0 6px 18px
+    rgba(0, 0, 0, 0.3);
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease,
+    filter 0.25s ease;
+
+  animation:
+    pulse
+    1.5s
+    infinite;
 }
 
 .open-book-btn:hover {
   background: #ffda47;
-  transform: scale(1.05);
+
+  transform:
+    translateY(-3px)
+    scale(1.05);
+
+  box-shadow:
+    0 10px 24px
+    rgba(0, 0, 0, 0.35);
+
+  filter: brightness(1.05);
 }
 
-/* Open Spread Layout */
+.open-book-btn:active {
+  transform:
+    scale(0.97);
+}
+
+
+/* =========================================================
+   OPEN SPREAD
+   ========================================================= */
+
 .spread-page {
   display: flex;
 }
 
-/* Photo Frame & Scaled Visual View */
+
+/* =========================================================
+   LEFT SIDE
+   ========================================================= */
+
 .left-side {
   width: 50%;
   height: 100%;
+
   background: #fdfaf8;
-  border-right: 2px dashed #dcdde1;
+
+  border-right:
+    2px dashed #dcdde1;
+
   display: flex;
+
   justify-content: center;
+
   align-items: center;
+
   padding: 15px;
 }
+
+
+/* =========================================================
+   PHOTO FRAME
+   ========================================================= */
 
 .photo-frame {
   width: 100%;
   height: 100%;
+
   max-height: 440px;
+
   border-radius: 10px;
+
   overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+
+  box-shadow:
+    0 8px 20px
+    rgba(0, 0, 0, 0.12);
+
   border: 5px solid #fff;
+
   background: #ffffff;
+
   display: flex;
+
   justify-content: center;
+
   align-items: center;
 }
 
 .photo-frame img {
   width: 100%;
   height: 100%;
+
   object-fit: cover;
+
   object-position: center;
+
   display: block;
+
+  transition:
+    transform 0.5s ease;
 }
+
+.photo-frame:hover img {
+  transform: scale(1.02);
+}
+
+
+/* =========================================================
+   RIGHT SIDE
+   ========================================================= */
 
 .right-side {
   width: 50%;
   height: 100%;
+
   background: #ffffff;
-  padding: 24px 20px 20px 20px;
+
+  padding:
+    24px
+    20px
+    20px
+    20px;
+
   display: flex;
+
   flex-direction: column;
+
   justify-content: flex-start;
+
   position: relative;
+
   overflow-y: auto;
+
+  scrollbar-width: thin;
+
+  scrollbar-color:
+    #ff6b81
+    transparent;
 }
+
+.right-side::-webkit-scrollbar {
+  width: 5px;
+}
+
+.right-side::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.right-side::-webkit-scrollbar-thumb {
+  background: #ff6b81;
+  border-radius: 10px;
+}
+
+
+/* =========================================================
+   PAGE NUMBER
+   ========================================================= */
 
 .page-number {
   position: absolute;
+
   bottom: 8px;
   right: 14px;
+
   font-size: 0.8rem;
+
   color: #a4b0be;
+
   font-weight: bold;
 }
 
+
+/* =========================================================
+   PAGE HEADING
+   ========================================================= */
+
 .right-side h2 {
   font-size: 1.35rem;
+
   color: #ff4757;
+
   margin-bottom: 6px;
 }
 
 .right-side .message {
   font-size: 0.88rem;
+
   line-height: 1.5;
+
   color: #57606f;
+
   margin-bottom: 8px;
 }
 
 .page-decor {
   font-size: 1.3rem;
+
+  margin-top: 4px;
 }
 
-/* END OF BOOK QUESTION STYLES */
+
+/* =========================================================
+   QUIZ
+   ========================================================= */
+
 .quiz-container {
   margin-top: 8px;
+
   padding-top: 8px;
-  border-top: 1px dashed #dcdde1;
+
+  border-top:
+    1px dashed #dcdde1;
+
   display: flex;
+
   flex-direction: column;
+
   gap: 6px;
+
   padding-bottom: 22px;
 }
 
 .quiz-question {
   font-size: 0.92rem;
+
   color: #2f3542;
+
   font-weight: 700;
 }
 
 .quiz-options {
   display: flex;
+
   flex-wrap: wrap;
+
   gap: 5px;
 }
 
 .quiz-opt {
   background: #f1f2f6;
+
   color: #2f3542;
-  border: 1px solid #dcdde1;
-  padding: 4px 9px;
+
+  border:
+    1px solid #dcdde1;
+
+  padding:
+    5px
+    9px;
+
   font-size: 0.75rem;
+
   font-weight: 600;
+
   border-radius: 10px;
+
   cursor: pointer;
-  transition: all 0.2s ease;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .quiz-opt:hover {
   background: #ff4757;
+
   color: white;
+
   border-color: #ff4757;
+
+  transform:
+    translateY(-2px);
+}
+
+.quiz-opt:active {
+  transform:
+    scale(0.96);
+}
+
+.quiz-opt.selected {
+  background: #ff4757;
+
+  color: white;
+
+  border-color: #ff4757;
+
+  box-shadow:
+    0 4px 10px
+    rgba(255, 71, 87, 0.25);
 }
 
 .quiz-result {
   font-size: 0.86rem;
+
   font-weight: bold;
+
   margin-top: 3px;
+
   min-height: 20px;
+
+  animation:
+    resultAppear
+    0.3s
+    ease;
 }
 
 .quiz-result.correct {
@@ -370,270 +927,720 @@ body {
   color: #ff4757;
 }
 
-/* Navigation Bar */
+@keyframes resultAppear {
+
+  from {
+    opacity: 0;
+    transform:
+      translateY(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      translateY(0);
+  }
+}
+
+
+/* =========================================================
+   CONFETTI BUTTON
+   ========================================================= */
+
+.confetti-btn {
+  align-self: flex-start;
+
+  margin-bottom: 3px;
+
+  background: #ff4757;
+
+  color: white;
+
+  border: none;
+
+  padding:
+    7px
+    14px;
+
+  font-size: 0.85rem;
+
+  font-weight: bold;
+
+  border-radius: 20px;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease,
+    filter 0.25s ease;
+}
+
+.confetti-btn:hover {
+  background: #ff6b81;
+
+  transform:
+    translateY(-3px);
+
+  box-shadow:
+    0 6px 15px
+    rgba(255, 71, 87, 0.25);
+
+  filter: brightness(1.05);
+}
+
+.confetti-btn:active {
+  transform:
+    scale(0.97);
+}
+
+
+/* =========================================================
+   NAVIGATION CONTROLS
+   ========================================================= */
+
 .controls {
   display: flex;
+
   align-items: center;
+
+  justify-content: center;
+
   gap: 20px;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  padding: 10px 25px;
+
+  background:
+    rgba(255, 255, 255, 0.15);
+
+  backdrop-filter:
+    blur(10px);
+
+  -webkit-backdrop-filter:
+    blur(10px);
+
+  padding:
+    10px 25px;
+
   border-radius: 30px;
+
   color: #fff;
+
   margin-top: 15px;
-  height: 50px;
-  transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s ease;
+
+  min-height: 50px;
+
+  transition:
+    opacity 0.4s ease,
+    visibility 0.4s ease,
+    transform 0.4s ease;
 }
 
 .controls.hidden-bar {
   opacity: 0;
+
   visibility: hidden;
-  transform: translateY(10px);
+
+  transform:
+    translateY(10px);
+
   pointer-events: none;
 }
 
-.controls button, .confetti-btn {
+.controls button {
   background: #ff4757;
+
   color: white;
+
   border: none;
-  padding: 6px 14px;
+
+  padding:
+    7px 14px;
+
   font-size: 0.85rem;
+
   font-weight: bold;
+
   border-radius: 20px;
+
   cursor: pointer;
-  transition: transform 0.2s, background 0.2s, opacity 0.3s;
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    opacity 0.3s ease,
+    filter 0.25s ease;
 }
 
-.controls button:hover:not(:disabled), .confetti-btn:hover {
+.controls button:hover:not(:disabled) {
   background: #ff6b81;
-  transform: translateY(-2px);
+
+  transform:
+    translateY(-3px);
+
+  filter: brightness(1.05);
+}
+
+.controls button:active:not(:disabled) {
+  transform:
+    scale(0.97);
 }
 
 .controls button:disabled {
   opacity: 0.4;
+
   cursor: not-allowed;
 }
 
-.confetti-btn {
-  align-self: flex-start;
-  margin-bottom: 3px;
+#pageIndicator {
+  min-width: 85px;
+
+  text-align: center;
+
+  font-size: 0.85rem;
+
+  font-weight: 600;
 }
+
+
+/* =========================================================
+   GENERAL BUTTON FOCUS
+   ========================================================= */
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible {
+  outline:
+    3px solid
+    rgba(255, 255, 255, 0.9);
+
+  outline-offset: 4px;
+}
+
+
+/* =========================================================
+   COVER BUTTON PULSE
+   ========================================================= */
 
 @keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.04); }
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.04);
+  }
 }
 
-/* Mobile Adjustments */
-@media (max-width: 768px) {
-  .book-perspective { height: 530px; }
-  .spiral-book.closed { width: 88vw; }
-  .spiral-book.open { width: 92vw; height: 510px; }
-  .spread-page { flex-direction: column; }
-  .left-side {
-    width: 100%;
-    height: 42%;
-    padding: 8px;
-    border-right: none;
-    border-bottom: 2px dashed #dcdde1;
-  }
-  .photo-frame {
-    width: 100%;
-    height: 100%;
-  }
-  .photo-frame img {
-    object-fit: contain; /* Full unclipped image frame on mobile */
-  }
-  .right-side { width: 100%; height: 58%; padding: 14px; }
-  .spiral-spine { display: none; }
-  .crowd { display: none; }
-}
 
-/* --- OVERLAY & INTRO STAGES --- */
+/* =========================================================
+   INTRO OVERLAY
+   ========================================================= */
+
 .intro-overlay {
   position: fixed;
+
   inset: 0;
+
   z-index: 1000;
+
   width: 100vw;
   height: 100vh;
+
   overflow: hidden;
-  transition: opacity 1s ease, visibility 1s ease;
+
+  opacity: 1;
+
+  visibility: visible;
+
+  transition:
+    opacity 1s ease,
+    visibility 1s ease;
 }
+
+.intro-overlay.intro-ending {
+  opacity: 0;
+
+  visibility: hidden;
+}
+
+
+/* =========================================================
+   INTRO STAGES
+   ========================================================= */
 
 .intro-stage {
   position: absolute;
+
   inset: 0;
+
   display: flex;
+
   flex-direction: column;
+
   justify-content: center;
+
   align-items: center;
-  transition: opacity 0.8s ease;
+
+  opacity: 1;
+
+  visibility: visible;
+
+  transform:
+    scale(1);
+
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease,
+    visibility 0.7s ease;
 }
 
-.hidden {
-  display: none !important;
+.intro-stage.stage-fade-out {
   opacity: 0;
+
+  transform:
+    scale(1.03);
+
   pointer-events: none;
 }
 
-/* STAGE 1: 3-STEP GROWING HEART */
+.intro-stage.stage-visible {
+  opacity: 1;
+
+  visibility: visible;
+
+  transform:
+    scale(1);
+}
+
+
+/* =========================================================
+   STAGE 1 — HEART
+   ========================================================= */
+
 .stage-bow {
-  background: radial-gradient(circle at center, #fff3f0 0%, #f8d7da 100%);
+  background:
+    radial-gradient(
+      circle at center,
+      #fff3f0 0%,
+      #f8d7da 100%
+    );
 }
 
 .subtitle-text {
   position: absolute;
+
   top: 15%;
-  font-family: 'Great Vibes', cursive;
+
+  font-family:
+    'Great Vibes',
+    cursive;
+
   font-size: 2.3rem;
+
   color: #c9717e;
+
+  animation:
+    subtitleFloat
+    2.5s
+    ease-in-out
+    infinite alternate;
 }
+
+@keyframes subtitleFloat {
+
+  from {
+    opacity: 0.75;
+
+    transform:
+      translateY(0);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(-5px);
+  }
+}
+
+
+/* =========================================================
+   GROWING HEART
+   ========================================================= */
 
 .pulsing-heart {
   font-size: 4rem;
-  transform: scale(1);
-  filter: drop-shadow(0 12px 25px rgba(235, 77, 75, 0.45));
-  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  transform:
+    scale(1);
+
+  filter:
+    drop-shadow(
+      0 12px 25px
+      rgba(235, 77, 75, 0.45)
+    );
+
+  transition:
+    transform 0.6s
+    cubic-bezier(
+      0.175,
+      0.885,
+      0.32,
+      1.275
+    );
+
   user-select: none;
+
+  will-change:
+    transform,
+    opacity;
 }
 
-.pulsing-heart.step-1 { transform: scale(1.6); }
-.pulsing-heart.step-2 { transform: scale(2.4); }
-.pulsing-heart.step-3 { transform: scale(3.2); }
+.pulsing-heart.step-1 {
+  transform:
+    scale(1.6);
+}
+
+.pulsing-heart.step-2 {
+  transform:
+    scale(2.4);
+}
+
+.pulsing-heart.step-3 {
+  transform:
+    scale(3.2);
+}
 
 .pulsing-heart.pop {
-  animation: heartPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  animation:
+    heartPop
+    0.4s
+    cubic-bezier(
+      0.175,
+      0.885,
+      0.32,
+      1.275
+    )
+    forwards;
 }
 
 @keyframes heartPop {
-  0% { transform: scale(3.2); opacity: 1; }
-  50% { transform: scale(4.2); opacity: 0.8; }
-  100% { transform: scale(0); opacity: 0; }
+
+  0% {
+    transform:
+      scale(3.2);
+
+    opacity: 1;
+  }
+
+  50% {
+    transform:
+      scale(4.2);
+
+    opacity: 0.8;
+  }
+
+  100% {
+    transform:
+      scale(0);
+
+    opacity: 0;
+  }
 }
 
-/* STAGE 2: DRAMATIC HAPPY BIRTHDAY */
+
+/* =========================================================
+   STAGE 2 — DRAMATIC BIRTHDAY
+   ========================================================= */
+
 .stage-dramatic {
-  background: radial-gradient(circle, #e84393, #a29bfe, #6c5ce7);
+  background:
+    radial-gradient(
+      circle,
+      #e84393,
+      #a29bfe,
+      #6c5ce7
+    );
 }
 
 .letterbox-bar {
   position: absolute;
+
   left: 0;
   right: 0;
+
   height: 16vh;
+
   background: #12040b;
+
   z-index: 10;
 }
 
-.bar-top { top: 0; }
-.bar-bot { bottom: 0; }
+.bar-top {
+  top: 0;
+}
+
+.bar-bot {
+  bottom: 0;
+}
 
 .dramatic-content {
   text-align: center;
+
   color: #ffffff;
+
   z-index: 5;
+
+  padding:
+    20px;
 }
 
 .sub-wish {
-  font-family: 'Great Vibes', cursive;
+  font-family:
+    'Great Vibes',
+    cursive;
+
   font-size: 2.4rem;
+
   opacity: 0.95;
+
   margin-bottom: 8px;
 }
 
 .dramatic-title {
-  font-family: 'Playfair Display', serif;
+  font-family:
+    'Playfair Display',
+    serif;
+
   font-size: 4rem;
+
   font-weight: 600;
+
   letter-spacing: 2px;
-  text-shadow: 0 4px 20px rgba(0,0,0,0.35);
-  animation: fadeInZoom 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+
+  text-shadow:
+    0 4px 20px
+    rgba(0, 0, 0, 0.35);
+
+  animation:
+    fadeInZoom
+    1.2s
+    cubic-bezier(
+      0.16,
+      1,
+      0.3,
+      1
+    )
+    forwards;
 }
 
 .sub-footer {
-  font-family: 'Playfair Display', serif;
+  font-family:
+    'Playfair Display',
+    serif;
+
   font-style: italic;
+
   font-size: 1.1rem;
+
   margin-top: 15px;
+
   opacity: 0.85;
 }
 
 @keyframes fadeInZoom {
-  0% { opacity: 0; transform: scale(0.8) translateY(25px); }
-  100% { opacity: 1; transform: scale(1) translateY(0); }
+
+  0% {
+    opacity: 0;
+
+    transform:
+      scale(0.8)
+      translateY(25px);
+  }
+
+  100% {
+    opacity: 1;
+
+    transform:
+      scale(1)
+      translateY(0);
+  }
 }
 
-/* STAGE 3: ORGANIC HEART TREE & BLOOMING */
+
+/* =========================================================
+   STAGE 3 — HEART TREE
+   ========================================================= */
+
 .stage-tree {
-  background: radial-gradient(circle at center, #fff6f8 0%, #fcdbe4 100%);
+  background:
+    radial-gradient(
+      circle at center,
+      #fff6f8 0%,
+      #fcdbe4 100%
+    );
+
   display: flex;
+
   flex-direction: column;
+
   justify-content: space-between;
+
   align-items: center;
-  padding: 20px 15px;
+
+  padding:
+    20px 15px;
+
   height: 100vh;
   width: 100vw;
-  box-sizing: border-box;
+
   overflow: hidden;
 }
 
+
+/* =========================================================
+   TREE TEXT
+   ========================================================= */
+
 .tree-text-overlay {
   width: 100%;
+
   text-align: left;
+
   padding-left: 5%;
+
   z-index: 10;
+
   pointer-events: none;
+
+  animation:
+    treeTextAppear
+    1s
+    ease
+    both;
 }
 
 .tree-sub {
-  font-family: 'Great Vibes', cursive;
+  font-family:
+    'Great Vibes',
+    cursive;
+
   font-size: 1.5rem;
+
   color: #aa5264;
+
   margin-bottom: 2px;
 }
 
 .tree-title {
-  font-family: 'Great Vibes', cursive;
+  font-family:
+    'Great Vibes',
+    cursive;
+
   font-size: 3rem;
+
   color: #d63031;
+
   line-height: 0.95;
 }
 
 .tree-footer {
   font-family: sans-serif;
+
   font-size: 0.8rem;
+
   color: #b25366;
+
   letter-spacing: 0.5px;
+
   margin-top: 4px;
 }
 
+@keyframes treeTextAppear {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(-15px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+
+/* =========================================================
+   TREE CANVAS
+   ========================================================= */
+
 .tree-canvas-container {
   position: relative;
-  width: min(380px, 90vw);
-  height: min(450px, 60vh);
+
+  width:
+    min(380px, 90vw);
+
+  height:
+    min(450px, 60vh);
+
   display: flex;
+
   justify-content: center;
+
   align-items: center;
-  margin: auto 0;
+
+  margin:
+    auto 0;
 }
 
 .tree-svg {
   width: 100%;
   height: 100%;
+
   overflow: visible;
+
+  position: relative;
+
+  z-index: 1;
 }
+
+
+/* =========================================================
+   TREE PATH ANIMATION
+   ========================================================= */
 
 .tree-path {
   stroke-dasharray: 1000;
+
   stroke-dashoffset: 1000;
-  animation: growTreePath 2.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+
+  animation:
+    growTreePath
+    2.2s
+    cubic-bezier(
+      0.4,
+      0,
+      0.2,
+      1
+    )
+    forwards;
 }
 
-.branch-outer-l, .branch-outer-r {
+.branch-outer-l,
+.branch-outer-r {
   animation-delay: 0.5s;
 }
 
-.branch-mid-l, .branch-mid-r {
+.branch-mid-l,
+.branch-mid-r {
   animation-delay: 0.9s;
 }
 
@@ -642,29 +1649,371 @@ body {
 }
 
 @keyframes growTreePath {
-  to { stroke-dashoffset: 0; }
+
+  to {
+    stroke-dashoffset: 0;
+  }
 }
+
+
+/* =========================================================
+   BLOOMING CANOPY
+   ========================================================= */
 
 .blooming-canopy {
   position: absolute;
+
   inset: 0;
+
+  width: 100%;
+  height: 100%;
+
   pointer-events: none;
+
+  overflow: visible;
+
+  z-index: 5;
 }
+
+
+/* =========================================================
+   BLOOM ITEMS
+   ========================================================= */
+
+/*
+  IMPORTANT FIX:
+
+  JavaScript controls:
+    left
+    top
+
+  CSS controls:
+    translate
+    scale
+    rotate
+
+  This prevents the old transform conflict.
+*/
 
 .bloom-item {
   position: absolute;
-  transform: scale(0);
-  animation: bloomPop 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.12));
+
+  transform:
+    translate(-50%, -50%)
+    scale(0)
+    rotate(
+      var(--bloom-rotation, 0deg)
+    );
+
+  transform-origin: center;
+
+  opacity: 0;
+
+  line-height: 1;
+
+  filter:
+    drop-shadow(
+      0 3px 6px
+      rgba(0, 0, 0, 0.12)
+    );
+
+  animation:
+    bloomPop
+    0.85s
+    cubic-bezier(
+      0.16,
+      1,
+      0.3,
+      1
+    )
+    forwards;
+
+  will-change:
+    transform,
+    opacity;
+
+  user-select: none;
 }
 
 @keyframes bloomPop {
-  0% { transform: scale(0) rotate(-20deg); opacity: 0; }
-  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+
+  0% {
+    opacity: 0;
+
+    transform:
+      translate(-50%, -50%)
+      scale(0)
+      rotate(
+        var(--bloom-rotation, 0deg)
+      );
+  }
+
+  55% {
+    opacity: 1;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1.25)
+      rotate(
+        calc(
+          var(--bloom-rotation, 0deg)
+          + 8deg
+        )
+      );
+  }
+
+  78% {
+    opacity: 1;
+
+    transform:
+      translate(-50%, -50%)
+      scale(0.92)
+      rotate(
+        calc(
+          var(--bloom-rotation, 0deg)
+          - 4deg
+        )
+      );
+  }
+
+  100% {
+    opacity: 1;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1)
+      rotate(
+        var(--bloom-rotation, 0deg)
+      );
+  }
 }
 
-.main-app-container {
-  width: 100vw;
-  height: 100vh;
-  position: relative;
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  .book-container {
+    padding: 8px;
+  }
+
+  .book-perspective {
+    height: 530px;
+  }
+
+  .spiral-book.closed {
+    width: 88vw;
+  }
+
+  .spiral-book.open {
+    width: 92vw;
+
+    height: 510px;
+  }
+
+  .spread-page {
+    flex-direction: column;
+  }
+
+  .left-side {
+    width: 100%;
+
+    height: 42%;
+
+    padding: 8px;
+
+    border-right: none;
+
+    border-bottom:
+      2px dashed #dcdde1;
+  }
+
+  .photo-frame {
+    width: 100%;
+    height: 100%;
+  }
+
+  .photo-frame img {
+    object-fit: contain;
+  }
+
+  .right-side {
+    width: 100%;
+
+    height: 58%;
+
+    padding: 14px;
+  }
+
+  .spiral-spine {
+    display: none;
+  }
+
+  .crowd {
+    display: none;
+  }
+
+  .cover-title {
+    font-size: 1.8rem;
+  }
+
+  .cover-subtitle {
+    font-size: 1rem;
+
+    margin-bottom: 25px;
+  }
+
+  .open-book-btn {
+    font-size: 0.95rem;
+
+    padding:
+      10px 22px;
+  }
+
+  .dramatic-title {
+    font-size: 2.6rem;
+  }
+
+  .sub-wish {
+    font-size: 1.8rem;
+  }
+
+  .sub-footer {
+    font-size: 0.9rem;
+  }
+
+  .tree-title {
+    font-size: 2.4rem;
+  }
+
+  .tree-sub {
+    font-size: 1.2rem;
+  }
+
+  .tree-footer {
+    font-size: 0.7rem;
+  }
+
+  .tree-canvas-container {
+    width: 92vw;
+
+    height: 58vh;
+  }
+
+  .controls {
+    gap: 10px;
+
+    padding:
+      8px 14px;
+  }
+
+  .controls button {
+    font-size: 0.75rem;
+
+    padding:
+      6px 10px;
+  }
+
+  #pageIndicator {
+    min-width: 65px;
+
+    font-size: 0.75rem;
+  }
+
+  .right-side .message {
+    font-size: 0.82rem;
+
+    line-height: 1.45;
+  }
+
+  .right-side h2 {
+    font-size: 1.15rem;
+  }
+
+  .quiz-opt {
+    font-size: 0.7rem;
+
+    padding:
+      4px 7px;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL SCREENS
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+  .book-perspective {
+    height: 500px;
+  }
+
+  .spiral-book.open {
+    height: 485px;
+  }
+
+  .dramatic-title {
+    font-size: 2.2rem;
+  }
+
+  .sub-wish {
+    font-size: 1.5rem;
+  }
+
+  .tree-title {
+    font-size: 2rem;
+  }
+
+  .cover-title {
+    font-size: 1.55rem;
+  }
+
+  .cover-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .right-side {
+    padding: 11px;
+  }
+
+  .right-side .message {
+    font-size: 0.77rem;
+  }
+
+  .quiz-container {
+    gap: 4px;
+  }
+
+  .quiz-options {
+    gap: 4px;
+  }
+
+  .quiz-opt {
+    font-size: 0.65rem;
+  }
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+
+    animation-iteration-count:
+      1 !important;
+
+    transition-duration:
+      0.01ms !important;
+
+    scroll-behavior: auto !important;
+  }
 }
